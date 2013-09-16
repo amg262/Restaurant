@@ -70,7 +70,7 @@ public class OrderController extends HttpServlet {
             dr = oc.getDrinks(drink);
             
             bill = oc.getBill();
-            gratuity = bill * .15;
+            gratuity = oc.getGratuity();
             
             sBill = "" + bill;
             sGratuity = "" + gratuity;
