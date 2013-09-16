@@ -43,7 +43,7 @@
                   String bill = "";
                   String tax = "";
                   String gratuity = "";
-                  String total = "";
+                  String finalBill = "";
                   
                   List entrees = (List)request.getAttribute("entree");
                   List sides = (List)request.getAttribute("side");
@@ -52,7 +52,7 @@
                   Object obj = request.getAttribute("bill");
                   Object obj2 = request.getAttribute("tax");
                   Object obj3 = request.getAttribute("gratuity");
-                  Object obj4 = request.getAttribute("total");
+                  Object obj4 = request.getAttribute("finalBill");
                   
                   
                   for (int i = 0; i < entrees.size(); i++){
@@ -74,14 +74,27 @@
                   }
                   out.println("<br />");
                   out.println("Bill:  " + bill);
-                  /////////////////////////////////////////////////
                   
-                  if (obj3 != null){
-                      gratuity = obj.toString();
+                  ////////////////////////////////////////////////
+                  if (obj2 != null){
+                      tax = obj2.toString();
                   }
                   out.println("<br />");
-                  out.println("Gratuity  " + gratuity);
+                  out.println("Tax:  " + tax);
                   
+                  ////////////////////////////////////////////////
+                  if (obj3 != null){
+                      gratuity = obj3.toString();
+                  }
+                  out.println("<br />");
+                  out.println("Gratuity:  " + gratuity);
+                  
+                  ////////////////////////////////////////////////
+                  if (obj4 != null){
+                      finalBill = obj4.toString();
+                  }
+                  out.println("<br />");
+                  out.println("Final Bill:  " + finalBill);
                   
                 %>
               
