@@ -98,7 +98,9 @@
                   
                 %>
               
-
+                <p>
+                    <a href="index.jsp">< Back</a>
+                </p>
           </div><!-- End of tab1 -->
           <!------------------------>
         </div><!-- End of tabs -->
