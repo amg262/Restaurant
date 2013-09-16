@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="styles.css" type="text/css">
         <script src="jQuery.js"></script>
         <script src="script.js"></script>
-        <title>JSP Page</title>
+        <title>Order</title>
     </head>
     
     <center>

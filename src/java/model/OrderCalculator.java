@@ -130,8 +130,6 @@ public class OrderCalculator {
     
     
     public double getFinalBill(){
-        
-        
         return finalBill;
     }
 
