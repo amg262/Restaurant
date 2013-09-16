@@ -45,7 +45,7 @@ public class OrderController extends HttpServlet {
         String sBill = "";
         String sTax = "";
         String sGratuity = "";
-        String sTotal = "";
+        String sFinalBill = "";
         
         String entree;
         String side;
@@ -53,7 +53,7 @@ public class OrderController extends HttpServlet {
         
         double tax;
         double gratuity;
-        double total;
+        double finalBill;
         double bill;
         
         List en = new ArrayList();
@@ -71,9 +71,13 @@ public class OrderController extends HttpServlet {
             
             bill = oc.getBill();
             gratuity = oc.getGratuity();
+            tax = oc.getTax();
+            finalBill = oc.getFinalBill();
             
             sBill = "" + bill;
             sGratuity = "" + gratuity;
+            sTax =  "" + tax;
+            sFinalBill = "" + finalBill;
 
         } catch (Exception e){
             
@@ -85,6 +89,8 @@ public class OrderController extends HttpServlet {
         request.setAttribute("drink", dr);
         request.setAttribute("bill", sBill);
         request.setAttribute("gratuity", sGratuity);
+        request.setAttribute("tax", sTax);
+        request.setAttribute("finalBill", sFinalBill);
         
         RequestDispatcher view = request.getRequestDispatcher("/result.jsp");
         view.forward(request, response);

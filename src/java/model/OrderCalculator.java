@@ -29,18 +29,33 @@ public class OrderCalculator {
         if (entree.equals("steak")){
             entrees.add(entree);
             bill += 20.00;
+            gratuity += (bill * .15);
+            tax += (bill * .05);
+            finalBill = bill + gratuity + tax;
             
         } else if (entree.equals("burger")){
             entrees.add(entree);
             bill += 20.00;
+            gratuity += (bill * .15);
+            tax += (bill * .05);
+            finalBill = bill + gratuity + tax;
+            
             
         } else if (entree.equals("chicken")){
             entrees.add(entree);
             bill += 20.00;
+            gratuity += (bill * .15);
+            tax += (bill * .05);
+            finalBill = bill + gratuity + tax;
+            
             
         } else if (entree.equals("salad")){
             entrees.add(entree);
             bill += 10.00;
+            gratuity += (bill * .15);
+            tax += (bill * .05);
+            finalBill = bill + gratuity + tax;
+            
         }
         return entrees;
     }
@@ -50,18 +65,32 @@ public class OrderCalculator {
         if (side.equals("fries")){
             sides.add(side);
             bill += 5.00;
+            gratuity += (bill * .15);
+            tax += (bill * .05);
+            finalBill = bill + gratuity + tax;
+            
             
         } else if (side.equals("potato")){
             sides.add(side);
             bill += 5.00;
+            gratuity += (bill * .15);
+            tax += (bill * .05);
+            finalBill = bill + gratuity + tax;
+            
             
         } else if (side.equals("salad")){
             sides.add(side);
-            bill += 5.00;
+            bill += 5.00;gratuity += (bill * .15);
+            tax += (bill * .05);
+            finalBill = bill + gratuity + tax;
+            
             
         } else if (side.equals("soup")){
             sides.add(side);
-            bill += 5.00;
+            bill += 5.00;gratuity += (bill * .15);
+            tax += (bill * .05);
+            finalBill = bill + gratuity + tax;
+            
         }
         return sides;
     }
@@ -70,21 +99,38 @@ public class OrderCalculator {
         
         if (drink.equals("high life")){
             drinks.add(drink);
-            bill += 4.00;
+            bill += 4.00;gratuity += (bill * .15);
+            tax += (bill * .05);
+            finalBill = bill + gratuity + tax;
+            
             
         } else if (drink.equals("miller lite")){
             drinks.add(drink);
-            bill += 4.00;
+            bill += 4.00;gratuity += (bill * .15);
+            tax += (bill * .05);
+            finalBill = bill + gratuity + tax;
+            
             
         } else if (drink.equals("blue moon")){
             drinks.add(drink);
-            bill += 4.00;
+            bill += 4.00;gratuity += (bill * .15);
+            tax += (bill * .05);
+            finalBill = bill + gratuity + tax;
+            
             
         } else if (drink.equals("soda")){
             drinks.add(drink);
-            bill += 2.00;
+            bill += 2.00;gratuity += (bill * .15);
+            tax += (bill * .05);
+            finalBill = bill + gratuity + tax;
+            
         }
         return drinks;
+    }
+    
+    
+    public double getFinalBill(){
+        return finalBill;
     }
 
     /**
@@ -99,7 +145,6 @@ public class OrderCalculator {
      */
     public double getGratuity() {
         
-        gratuity = (getBill() * .10);
         return gratuity;
     }
 
