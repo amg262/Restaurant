@@ -1,0 +1,130 @@
+@charset "utf-8";
+
+
+body {
+	font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;
+	background-color: #42413C;
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+
+ul, ol, dl { 
+	padding: 0;
+	margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6{
+	margin-top: 0; 
+	padding-right: 15px;
+	padding-left: 15px;
+	color:#E81C21;
+	text-shadow:#000;
+	text-outline:#03F;
+	text-transform:capitalize;
+}
+
+a img { 
+	border: none;
+}
+
+a:link {
+	color: #42413C;
+	text-decoration: underline; 
+}
+a:visited {
+	color: #6E6C64;
+	text-decoration: underline;
+}
+
+a:hover, a:active, a:focus { 
+	text-decoration: none;
+}
+
+.container {
+	text-align:center;
+	width: 900px;
+	height: 900px;
+	background-color:transparent;
+	margin: 0 auto; 
+}
+
+.content {
+	padding: 10px 0;
+}
+
+.fltrt {  
+	float: right;
+	margin-left: 8px;
+}
+
+.fltlft { 
+	float: left;
+	margin-right: 8px;
+}
+
+.clearfloat { 
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+
+<!--Code provided from class
+UL.tabNavigation {
+	
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+UL.tabNavigation LI {
+	display: inline;
+}
+
+UL.tabNavigation LI A {
+	padding: 4px 20px;
+	background-color: #E81C21;
+	color: #000;
+	font-weight:900;
+	text-decoration: none;
+	border:groove;
+	border-color:#000;
+}
+
+UL.tabNavigation LI A.selected,
+UL.tabNavigation LI A:hover {
+	background-color:#E81C21;
+	color:#000;
+	padding-top: 7px;
+	
+}
+
+UL.tabNavigation LI A:focus {
+	outline: 0;
+}
+
+div.tabs > div {
+	padding: 5px;
+	margin-top: 3px;
+	border: 5px solid #333;
+	width: 600px;
+	height: 400px;
+}
+
+div.tabs > div h2 {
+	margin-top: 0;
+}
+
+div.tabs{
+	margin-left: 15px;	
+}
+-->
+
+#tab1 {
+	background-color:white;
+	width: auto;
+	height: 700px;
+	border:groove;
+	border-width:thick;
+}
