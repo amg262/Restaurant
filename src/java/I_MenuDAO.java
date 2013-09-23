@@ -13,7 +13,8 @@ import java.util.List;
 public interface I_MenuDAO {
     
     public abstract void openLocalDBConn() throws DataAccessException;
-    public abstract Menu retrieveMenuItemById(String id) throws DataAccessException;
     public abstract List<Menu> retrieveAllMenuItems() throws DataAccessException;
-    
+    public abstract List<Menu> retrieveEntrees() throws DataAccessException;
+    public abstract List<Menu> retrieveSides() throws DataAccessException;
+    public abstract List<Menu> retrieveDrinks() throws DataAccessException;
 }

@@ -153,6 +153,30 @@ public class Menu {
                 + "\n categoryId=" + categoryId
                 + "\n name=" + name + "\n desc="
                 + desc + "\n price=" + price
-                + "\n type=" + type + "\n}\n";
+                + "\n}\n";
+    }
+    
+    public String entreesToString() {
+        return "Menu Item \n{\n" + "menuItemId=" + menuItemId
+                + "\n categoryId=" + categoryId
+                + "\n name=" + name + "\n desc="
+                + desc + "\n price=" + price
+                + "\n}\n";
+    }
+    
+    public String sidesToString() {
+        return "Menu Item \n{\n" + "menuItemId=" + menuItemId
+                + "\n categoryId=" + categoryId
+                + "\n name=" + name + "\n desc="
+                + desc + "\n price=" + price
+                + "\n}\n";
+    }
+    
+    public String drinksToString(){
+        return "Menu Item \n{\n" + "menuItemId=" + menuItemId
+                + "\n categoryId=" + categoryId
+                + "\n name=" + name + "\n desc="
+                + desc + "\n price=" + price
+                + "\n}\n";
     }
 }
