@@ -16,19 +16,18 @@ import java.util.Map;
 public class MenuDAO implements I_MenuDAO {
 
     private static final String RETRIEVE_ALL_MENU_ITEMS =
-            "SELECT name"
-            + ", menu_item.desc, menu_item.price"
-            + "from menu_item;";
+            "Select menu_item.menu_item_id, menu_item.name, menu_item.desc, menu_item.price, category.category_id, category.type "
+            + " from menu_item join category on menu_item.category_id = category.category_id ; ";
     
     private static final String RETRIEVE_MENU_ITEMS_BY_CATEGORY_ID =
-            "select menu_item.menu_item_id\n" +
-            ", menu_item.name" +
-            ", menu_item.desc" +
-            ", menu_item.price" +
-            ", category.category_id" +
-            ", category.type\n" +
-            "from menu_item join category on menu_item.category_id = category.category_id" +
-            "where category.category_id = ";
+            "select menu_item.menu_item_id " +
+            ", menu_item.name " +
+            ", menu_item.desc " +
+            ", menu_item.price " +
+            ", category.category_id " +
+            ", category.type " +
+            " from menu_item join category on menu_item.category_id = category.category_id " +
+            " where category.category_id = ";
     
     
     private I_DBAccessor db;
@@ -91,9 +90,6 @@ public class MenuDAO implements I_MenuDAO {
             String menu_item_id = map.get("menu_item_id").toString();
             menu.setMenuItemId(new Integer(menu_item_id));
             
-            String category_id = map.get("category.category_id").toString();
-            menu.setCategoryId(new Integer(category_id));
-            
             
             String name = map.get("name").toString();
             menu.setName(name);
@@ -104,8 +100,10 @@ public class MenuDAO implements I_MenuDAO {
             String price = map.get("price").toString();
             menu.setPrice(new Double (price));
             
+            String category_id = map.get("category_id").toString();
+            menu.setCategoryId(new Integer(category_id));
             
-            String type = map.get("category.type").toString();
+            String type = map.get("type").toString();
             menu.setType(type);
             
             records.add(menu);
