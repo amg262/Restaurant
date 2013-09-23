@@ -55,7 +55,7 @@
             for (Menu e : entree){
                 int i = 0;
                 out.println("<br />");
-                out.println("<option value='entree" + i + "'>" + e.getName() + "  " + e.getPrice() + "</option>" );
+                out.println("<option value='entree" + i + "'>" + e.getName() +  "    "  + e.getDesc() + "\t$" + e.getPrice() + "</option>" );
                 out.println("<br />");
                 i++;
             }
@@ -84,7 +84,7 @@
             for (Menu s : side){
                 int i=0;
                 out.println("<br />");
-                out.println("<option value='side" + i + "'>" + s.getName() + "  " + s.getPrice() + "</option>" );
+                out.println("<option value='side" + i + "'>" + s.getName() +  "    "  + s.getDesc() + "\t$" + s.getPrice() + "</option>" );
                 out.println("<br />");
                 i++;
             }
@@ -112,7 +112,7 @@
             for (Menu d : drink){
                 int i=0;
                 out.println("<br />");
-                out.println("<option value='drink" + i + "'>" + d.getName() + "  " + d.getPrice() + "</option>" );
+                out.println("<option value='drink" + i + "'>" + d.getName() +  "    "  + d.getDesc() + "\t$" + d.getPrice() + "</option>" );
                 out.println("<br />");
                 i++;
             }
