@@ -149,10 +149,10 @@ public class Menu {
     
     @Override
     public String toString() {
-        return "Menu{" + "menuItemId=" + menuItemId
-                + ", categoryId=" + categoryId
-                + ", name=" + name + ", desc="
-                + desc + ", price=" + price
-                + ", type=" + type + '}';
+        return "Menu Item \n{\n" + "menuItemId=" + menuItemId
+                + "\n categoryId=" + categoryId
+                + "\n name=" + name + "\n desc="
+                + desc + "\n price=" + price
+                + "\n type=" + type + "\n}\n";
     }
 }
