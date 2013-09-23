@@ -23,6 +23,18 @@ public class MenuService {
         return menuDAO.retrieveAllMenuItems();
     }
     
+    public List<Menu> getEntrees() throws DataAccessException{
+        return menuDAO.retrieveEntrees();
+    }
+    
+    public List<Menu> getSides() throws DataAccessException{
+        return menuDAO.retrieveSides();
+    }
+    
+    public List<Menu> getDrinks() throws DataAccessException{
+        return menuDAO.retrieveDrinks();
+    }
+    
     
     public static void main(String[] args) throws DataAccessException {
         MenuService ms = new MenuService();
