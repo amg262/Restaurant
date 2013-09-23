@@ -16,14 +16,15 @@ public class Menu {
     private double price;
     private String type;
 
-    public Menu(int menuItemId, int categoryId, String name, String desc, double price, String type) {
+    public Menu(int menuItemId, String name, String desc, double price, int categoryId,  String type) {
         this.menuItemId = menuItemId;
-        this.categoryId = categoryId;
         this.name = name;
         this.desc = desc;
         this.price = price;
+        this.categoryId = categoryId;
         this.type = type;
     }
+
 
     public Menu(int menuItemId, int categoryId) {
         this.menuItemId = menuItemId;
@@ -144,15 +145,14 @@ public class Menu {
         }
         return true;
     }
-
+    
+    
     @Override
     public String toString() {
         return "Menu{" + "menuItemId=" + menuItemId
                 + ", categoryId=" + categoryId
                 + ", name=" + name + ", desc="
-                + desc + ", price=" + price + '}';
+                + desc + ", price=" + price
+                + ", type=" + type + '}';
     }
-
-    
-    
 }

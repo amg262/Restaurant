@@ -16,7 +16,7 @@ import java.util.Map;
 public class MenuDAO implements I_MenuDAO {
 
     private static final String RETRIEVE_ALL_MENU_ITEMS =
-            "Select menu_item.menu_item_id, menu_item.name, menu_item.desc, menu_item.price, category.category_id, category.type "
+            "Select menu_item.menu_item_id, menu_item.name, menu_item.desc, menu_item.price, category.category_id, category.type"
             + " from menu_item join category on menu_item.category_id = category.category_id ; ";
     
     private static final String RETRIEVE_MENU_ITEMS_BY_CATEGORY_ID =
