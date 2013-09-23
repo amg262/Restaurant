@@ -1,3 +1,5 @@
+package model;
+
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -23,8 +25,21 @@ public class DBGenericAccessor implements I_DBAccessor {
 
     private Connection conn;
     
+    /**
+     *
+     */
     public DBGenericAccessor(){}
     
+    /**
+     *
+     * @param driverClassName
+     * @param url
+     * @param username
+     * @param password
+     * @throws IllegalArgumentException
+     * @throws ClassNotFoundException
+     * @throws SQLException
+     */
     @Override
     public void openConnection(String driverClassName, String url, String username, String password)
             throws IllegalArgumentException, ClassNotFoundException, SQLException {
@@ -39,11 +54,23 @@ public class DBGenericAccessor implements I_DBAccessor {
         
     }
 
+    /**
+     *
+     * @throws SQLException
+     */
     @Override
     public void closeConnection() throws SQLException {
         conn.close();
     }
 
+    /**
+     *
+     * @param sqlString
+     * @param closeConnection
+     * @return
+     * @throws SQLException
+     * @throws Exception
+     */
     @Override
     public List retrieveRecords(String sqlString, boolean closeConnection)
             throws SQLException, Exception {

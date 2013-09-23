@@ -1,3 +1,5 @@
+package model;
+
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -37,12 +39,23 @@ public class MenuDAO implements I_MenuDAO {
     private I_DBAccessor db;
             
     
+    /**
+     *
+     */
     public MenuDAO() {}
     
+    /**
+     *
+     * @param db
+     */
     public MenuDAO(I_DBAccessor db){
         this.db = db;
     }
             
+    /**
+     *
+     * @throws DataAccessException
+     */
     @Override
     public void openLocalDBConn() throws DataAccessException {
         try {
@@ -61,6 +74,11 @@ public class MenuDAO implements I_MenuDAO {
     
 
 
+    /**
+     *
+     * @return
+     * @throws DataAccessException
+     */
     @Override
     public List<Menu> retrieveAllMenuItems() throws DataAccessException {
         this.openLocalDBConn();
@@ -107,6 +125,11 @@ public class MenuDAO implements I_MenuDAO {
     }
  
     
+    /**
+     *
+     * @return
+     * @throws DataAccessException
+     */
     @Override
     public List<Menu> retrieveEntrees() throws DataAccessException {
         this.openLocalDBConn();
@@ -145,6 +168,11 @@ public class MenuDAO implements I_MenuDAO {
         return records;
     }
 
+    /**
+     *
+     * @return
+     * @throws DataAccessException
+     */
     @Override
     public List<Menu> retrieveSides() throws DataAccessException {
             this.openLocalDBConn();
@@ -183,6 +211,11 @@ public class MenuDAO implements I_MenuDAO {
         return records;
     }
 
+    /**
+     *
+     * @return
+     * @throws DataAccessException
+     */
     @Override
     public List<Menu> retrieveDrinks() throws DataAccessException {
             this.openLocalDBConn();
@@ -224,6 +257,11 @@ public class MenuDAO implements I_MenuDAO {
 
     
     
+    /**
+     *
+     * @param args
+     * @throws DataAccessException
+     */
     public static void main(String[] args) throws DataAccessException {
         I_MenuDAO dao = new MenuDAO(new DBGenericAccessor());
         

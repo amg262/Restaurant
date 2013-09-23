@@ -1,3 +1,5 @@
+package model;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -16,6 +18,15 @@ public class Menu {
     private double price;
     private String type;
 
+    /**
+     *
+     * @param menuItemId
+     * @param name
+     * @param desc
+     * @param price
+     * @param categoryId
+     * @param type
+     */
     public Menu(int menuItemId, String name, String desc, double price, int categoryId,  String type) {
         this.menuItemId = menuItemId;
         this.name = name;
@@ -26,15 +37,27 @@ public class Menu {
     }
 
 
+    /**
+     *
+     * @param menuItemId
+     * @param categoryId
+     */
     public Menu(int menuItemId, int categoryId) {
         this.menuItemId = menuItemId;
         this.categoryId = categoryId;
     }
     
+    /**
+     *
+     * @param categoryId
+     */
     public Menu(int categoryId) {
         this.categoryId = categoryId;
     }
     
+    /**
+     *
+     */
     public Menu() {}
 
     /**
@@ -124,6 +147,10 @@ public class Menu {
     
     
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -131,6 +158,11 @@ public class Menu {
         return hash;
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -147,6 +179,10 @@ public class Menu {
     }
     
     
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Menu Item \n{\n" + "menuItemId=" + menuItemId

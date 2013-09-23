@@ -15,136 +15,43 @@ import java.util.Set;
  */
 public class OrderCalculator {
     
-    private double bill;
-    private double gratuity;
-    private double tax;
-    private double finalBill;
+    private double bill = 0;
+    private double gratuity = 0;
+    private double tax = 0;
+    private double finalBill = 0;
+    private List<Menu> order = new ArrayList<>();
     
-    private List entrees = new ArrayList();
-    private List sides = new ArrayList();
-    private List drinks = new ArrayList();
+    /**
+     *
+     */
+    public OrderCalculator() {}
     
-    public List getEntree(String entree){
-        
-        if (entree.equals("steak")){
-            entrees.add(entree);
-            bill += 20.00;
-            gratuity += (bill * .15);
-            tax += (bill * .05);
-            finalBill = bill + gratuity + tax;
-            
-        } else if (entree.equals("burger")){
-            entrees.add(entree);
-            bill += 20.00;
-            gratuity += (bill * .15);
-            tax += (bill * .05);
-            finalBill = bill + gratuity + tax;
-            
-            
-        } else if (entree.equals("chicken")){
-            entrees.add(entree);
-            bill += 20.00;
-            gratuity += (bill * .15);
-            tax += (bill * .05);
-            finalBill = bill + gratuity + tax;
-            
-            
-        } else if (entree.equals("salad")){
-            entrees.add(entree);
-            bill += 10.00;
-            gratuity += (bill * .15);
-            tax += (bill * .05);
-            finalBill = bill + gratuity + tax;
-            
-        }
-        return entrees;
+    /**
+     *
+     * @param items
+     */
+    public OrderCalculator(List<Menu> items){
+        this.order = items;
     }
     
-    public List getSides(String side){
-        
-        if (side.equals("fries")){
-            sides.add(side);
-            bill += 5.00;
-            gratuity += (bill * .15);
-            tax += (bill * .05);
-            finalBill = bill + gratuity + tax;
-            
-            
-        } else if (side.equals("potato")){
-            sides.add(side);
-            bill += 5.00;
-            gratuity += (bill * .15);
-            tax += (bill * .05);
-            finalBill = bill + gratuity + tax;
-            
-            
-        } else if (side.equals("salad")){
-            sides.add(side);
-            bill += 5.00;gratuity += (bill * .15);
-            tax += (bill * .05);
-            finalBill = bill + gratuity + tax;
-            
-            
-        } else if (side.equals("soup")){
-            sides.add(side);
-            bill += 5.00;gratuity += (bill * .15);
-            tax += (bill * .05);
-            finalBill = bill + gratuity + tax;
-            
-        }
-        return sides;
-    }
-    
-    public List getDrinks(String drink){
-        
-        if (drink.equals("high life")){
-            drinks.add(drink);
-            bill += 4.00;gratuity += (bill * .15);
-            tax += (bill * .05);
-            finalBill = bill + gratuity + tax;
-            
-            
-        } else if (drink.equals("miller lite")){
-            drinks.add(drink);
-            bill += 4.00;gratuity += (bill * .15);
-            tax += (bill * .05);
-            finalBill = bill + gratuity + tax;
-            
-            
-        } else if (drink.equals("blue moon")){
-            drinks.add(drink);
-            bill += 4.00;gratuity += (bill * .15);
-            tax += (bill * .05);
-            finalBill = bill + gratuity + tax;
-            
-            
-        } else if (drink.equals("soda")){
-            drinks.add(drink);
-            bill += 2.00;gratuity += (bill * .15);
-            tax += (bill * .05);
-            finalBill = bill + gratuity + tax;
-            
-        }
-        return drinks;
-    }
-    
-    
-    public double getFinalBill(){
-        return finalBill;
-    }
 
     /**
      * @return the bill
      */
     public double getBill() {
+        for (Menu menu : order){
+            bill += menu.getPrice();
+        }
         return bill;
     }
+    
 
     /**
      * @return the gratuity
      */
     public double getGratuity() {
-        
+        gratuity = getBill() * .165;
+        //return getBill() * .165
         return gratuity;
     }
 
@@ -152,6 +59,17 @@ public class OrderCalculator {
      * @return the tax
      */
     public double getTax() {
+        tax = getBill() * .055;
+        //return getBill() * .055
         return tax;
+    }
+
+    /**
+     * 
+     * @return finalBill
+     */
+    public double getFinalBill(){
+        finalBill = getBill() + getGratuity() + getTax();
+        return finalBill;
     }
 }

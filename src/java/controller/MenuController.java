@@ -6,10 +6,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -21,14 +18,13 @@ import javax.servlet.http.HttpServletResponse;
 import model.DataAccessException;
 import model.Menu;
 import model.MenuService;
-import model.OrderCalculator;
 
 /**
  *
- * @author agunn1
+ * @author Andy
  */
-@WebServlet(name = "OrderController", urlPatterns = {"/OrderController"})
-public class OrderController extends HttpServlet {
+@WebServlet(name = "MenuController", urlPatterns = {"/MenuController"})
+public class MenuController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -44,80 +40,28 @@ public class OrderController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, DataAccessException {
         response.setContentType("text/html;charset=UTF-8");
-        
         PrintWriter out = response.getWriter();
-        MenuService ms = new MenuService();
-        
+
         try {
-        
-        List<Menu> entrees = new ArrayList();
-        List<Menu> sides = new ArrayList();
-        List<Menu> drinks = new ArrayList();
-        List<Menu> order = new ArrayList();
-        
-        entrees = ms.getEntrees();
-        sides = ms.getSides();
-        drinks = ms.getDrinks();
-
-        
-        
-        double tax = 0;
-        double gratuity = 0;
-        double finalBill = 0;
-        double bill = 0;
-        
-        String sTax = "";
-        String sGratuity = "";
-        String sFinalBill = "";
-        String sBill = "";
-
             
-            for (int i=0; i < entrees.size(); i++){
-                Object object1 = request.getParameter("entree" + i);
-                if (object1 != null){
-                    order.add(entrees.get(i));
-                }
-            } // end of 1st for
+            MenuService ms = new MenuService();
             
-            for (int i=0; i < sides.size(); i++){
-                Object object2 = request.getParameter("side" + i);
-                if (object2 != null){
-                    order.add(sides.get(i));
-                }
-            } // end of 2nd for
-            
-            for (int i=0; i < drinks.size(); i++){
-                Object object3 = request.getParameter("drink" + i);
-                if (object3 != null){
-                    order.add(drinks.get(i));
-                }
-            } // end of 3rd for
+            List<Menu> entreeItems = ms.getEntrees();
+            List<Menu> sideItems = ms.getSides();
+            List<Menu> drinkItems = ms.getDrinks();
             
             
-            OrderCalculator oc = new OrderCalculator(order);
-            bill = oc.getBill();
-            tax = oc.getTax();
-            gratuity = oc.getGratuity();
-            finalBill = oc.getFinalBill();
+            request.setAttribute("entreeItems", entreeItems);
+            request.setAttribute("sideItems", sideItems);
+            request.setAttribute("drinkItems", drinkItems);
             
-            sBill = "" + bill;
-            sTax = "" + tax;
-            sGratuity = "" + gratuity;
-            sFinalBill = "" + finalBill;
             
-            request.setAttribute("bill", sBill);
-            request.setAttribute("tax", sTax);
-            request.setAttribute("gratuity", sGratuity);
-            request.setAttribute("finalBill", sFinalBill);
-
-        } catch (Exception e){
+            RequestDispatcher view = request.getRequestDispatcher("/index.jsp");
+            view.forward(request, response);
             
+        } finally {            
+            out.close();
         }
-        
-        
-        RequestDispatcher view = request.getRequestDispatcher("/result.jsp");
-        view.forward(request, response);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -136,7 +80,7 @@ public class OrderController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (DataAccessException ex) {
-            Logger.getLogger(OrderController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -155,7 +99,7 @@ public class OrderController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (DataAccessException ex) {
-            Logger.getLogger(OrderController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
