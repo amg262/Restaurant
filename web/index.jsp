@@ -4,6 +4,9 @@
     Author     : agunn1
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,6 +21,14 @@
     <center>
     <body background="badgers.jpg">
     </center>
+    
+    <%
+        
+       // for (MenuItem item: menuList){
+       //     out.println("<option value='" + item.get)
+      //  }
+        
+    %>
 
     <div class="container">
       <div class="content">
