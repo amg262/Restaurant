@@ -1,4 +1,4 @@
-package model;
+package db;
 
 /*
  * To change this template, choose Tools | Templates

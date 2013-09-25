@@ -2,12 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package dbaccess;
+package db;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-import model.MenuItem;
 
 /**
  *

@@ -1,11 +1,12 @@
 package model;
 
 
-import dbaccess.I_DBAccessor;
-import dbaccess.DataAccessException;
-import dbaccess.DBGenericAccessor;
-import dbaccess.I_MenuDAO;
-import dbaccess.MenuDAO;
+import db.MenuItem;
+import db.I_DBAccessor;
+import db.DataAccessException;
+import db.DBGenericAccessor;
+import db.I_MenuDAO;
+import db.MenuDAO;
 import java.util.List;
 
 /*

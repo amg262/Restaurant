@@ -1,4 +1,4 @@
-package dbaccess;
+package db;
 
 
 import java.sql.Connection;
