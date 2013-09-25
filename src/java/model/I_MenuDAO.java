@@ -24,23 +24,6 @@ public interface I_MenuDAO {
      * @return
      * @throws DataAccessException
      */
-    public abstract List<Menu> retrieveAllMenuItems() throws DataAccessException;
-    /**
-     *
-     * @return
-     * @throws DataAccessException
-     */
-    public abstract List<Menu> retrieveEntrees() throws DataAccessException;
-    /**
-     *
-     * @return
-     * @throws DataAccessException
-     */
-    public abstract List<Menu> retrieveSides() throws DataAccessException;
-    /**
-     *
-     * @return
-     * @throws DataAccessException
-     */
-    public abstract List<Menu> retrieveDrinks() throws DataAccessException;
+    public abstract List<MenuItem> retrieveAllMenuItems() throws DataAccessException;
+
 }

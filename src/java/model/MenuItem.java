@@ -9,7 +9,7 @@ package model;
  *
  * @author Andy
  */
-public class Menu {
+public class MenuItem {
     
     private int menuItemId;
     private int categoryId;
@@ -27,7 +27,7 @@ public class Menu {
      * @param categoryId
      * @param type
      */
-    public Menu(int menuItemId, String name, String desc, double price, int categoryId,  String type) {
+    public MenuItem(int menuItemId, String name, String desc, double price, int categoryId,  String type) {
         this.menuItemId = menuItemId;
         this.name = name;
         this.desc = desc;
@@ -42,7 +42,7 @@ public class Menu {
      * @param menuItemId
      * @param categoryId
      */
-    public Menu(int menuItemId, int categoryId) {
+    public MenuItem(int menuItemId, int categoryId) {
         this.menuItemId = menuItemId;
         this.categoryId = categoryId;
     }
@@ -51,14 +51,14 @@ public class Menu {
      *
      * @param categoryId
      */
-    public Menu(int categoryId) {
+    public MenuItem(int categoryId) {
         this.categoryId = categoryId;
     }
     
     /**
      *
      */
-    public Menu() {}
+    public MenuItem() {}
 
     /**
      * @return the menuItemId
@@ -171,7 +171,7 @@ public class Menu {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Menu other = (Menu) obj;
+        final MenuItem other = (MenuItem) obj;
         if (this.menuItemId != other.menuItemId) {
             return false;
         }

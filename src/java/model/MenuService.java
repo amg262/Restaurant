@@ -29,38 +29,11 @@ public class MenuService {
      * @return
      * @throws DataAccessException
      */
-    public List<Menu> getAllMenuItems() throws DataAccessException{
+    public List<MenuItem> getAllMenuItems() throws DataAccessException{
         return menuDAO.retrieveAllMenuItems();
     }
     
-    /**
-     *
-     * @return
-     * @throws DataAccessException
-     */
-    public List<Menu> getEntrees() throws DataAccessException{
-        return menuDAO.retrieveEntrees();
-    }
-    
-    /**
-     *
-     * @return
-     * @throws DataAccessException
-     */
-    public List<Menu> getSides() throws DataAccessException{
-        return menuDAO.retrieveSides();
-    }
-    
-    /**
-     *
-     * @return
-     * @throws DataAccessException
-     */
-    public List<Menu> getDrinks() throws DataAccessException{
-        return menuDAO.retrieveDrinks();
-    }
-    
-    
+
     /**
      *
      * @param args
@@ -73,9 +46,4 @@ public class MenuService {
         System.out.println(ms.getAllMenuItems());
         
     }
-    
-    
-    
-    
-    
 }

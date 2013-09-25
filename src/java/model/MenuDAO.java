@@ -21,21 +21,7 @@ public class MenuDAO implements I_MenuDAO {
             "Select menu_item.menu_item_id, menu_item.name, menu_item.desc, menu_item.price, category.category_id, category.type"
             + " from menu_item join category on menu_item.category_id = category.category_id  "; 
     
-    private static final String RETRIEVE_ENTREES = 
-            "Select menu_item.menu_item_id, menu_item.name, menu_item.desc, menu_item.price, menu_item.category_id, category.type"
-            + " from menu_item join category on menu_item.category_id = category.category_id  "
-            + " where category.category_id = '1' ; "; 
-            
-    private static final String RETRIEVE_SIDES = 
-            "Select menu_item.menu_item_id, menu_item.name, menu_item.desc, menu_item.price, menu_item.category_id, category.type"
-            + " from menu_item join category on menu_item.category_id = category.category_id  "
-            + " where category.category_id = '2' ; "; 
-        
-    private static final String RETRIEVE_DRINKS =
-            "Select menu_item.menu_item_id, menu_item.name, menu_item.desc, menu_item.price, menu_item.category_id, category.type"
-            + " from menu_item join category on menu_item.category_id = category.category_id  "
-            + " where category.category_id = '3' ; "; 
-    
+
     private I_DBAccessor db;
             
     
@@ -80,11 +66,11 @@ public class MenuDAO implements I_MenuDAO {
      * @throws DataAccessException
      */
     @Override
-    public List<Menu> retrieveAllMenuItems() throws DataAccessException {
+    public List<MenuItem> retrieveAllMenuItems() throws DataAccessException {
         this.openLocalDBConn();
         
         List<Map> rawData = new ArrayList<>();
-        List<Menu> records = new ArrayList<>();
+        List<MenuItem> records = new ArrayList<>();
         
         try {
             rawData = db.retrieveRecords(RETRIEVE_ALL_MENU_ITEMS, true);
@@ -94,10 +80,10 @@ public class MenuDAO implements I_MenuDAO {
             throw new DataAccessException (e.getMessage(), e);
         }
         
-        Menu menu = null;
+        MenuItem menu = null;
         
         for (Map map : rawData){
-            menu = new Menu();
+            menu = new MenuItem();
             
             String menu_item_id = map.get("menu_item_id").toString();
             menu.setMenuItemId(new Integer(menu_item_id));
@@ -123,136 +109,6 @@ public class MenuDAO implements I_MenuDAO {
         
         return records;
     }
- 
-    
-    /**
-     *
-     * @return
-     * @throws DataAccessException
-     */
-    @Override
-    public List<Menu> retrieveEntrees() throws DataAccessException {
-        this.openLocalDBConn();
-        
-        List<Map> rawData = new ArrayList<>();
-        List<Menu> records = new ArrayList<>();
-        
-        try {
-            rawData = db.retrieveRecords(RETRIEVE_ENTREES, true);
-        } catch (SQLException sqle){
-            throw new DataAccessException (sqle.getMessage(), sqle);
-        } catch (Exception e){
-            throw new DataAccessException (e.getMessage(), e);
-        }
-        
-        Menu menu = null;
-        
-        for (Map map : rawData){
-            menu = new Menu();
-            
-            String menu_item_id = map.get("menu_item_id").toString();
-            menu.setMenuItemId(new Integer(menu_item_id));
-            
-            
-            String name = map.get("name").toString();
-            menu.setName(name);
-            
-            String desc = map.get("desc").toString();
-            menu.setDesc(desc);
-            
-            String price = map.get("price").toString();
-            menu.setPrice(new Double (price));
-
-            records.add(menu);
-        }
-        return records;
-    }
-
-    /**
-     *
-     * @return
-     * @throws DataAccessException
-     */
-    @Override
-    public List<Menu> retrieveSides() throws DataAccessException {
-            this.openLocalDBConn();
-        
-        List<Map> rawData = new ArrayList<>();
-        List<Menu> records = new ArrayList<>();
-        
-        try {
-            rawData = db.retrieveRecords(RETRIEVE_SIDES, true);
-        } catch (SQLException sqle){
-            throw new DataAccessException (sqle.getMessage(), sqle);
-        } catch (Exception e){
-            throw new DataAccessException (e.getMessage(), e);
-        }
-        
-        Menu menu = null;
-        
-        for (Map map : rawData){
-            menu = new Menu();
-            
-            String menu_item_id = map.get("menu_item_id").toString();
-            menu.setMenuItemId(new Integer(menu_item_id));
-            
-            
-            String name = map.get("name").toString();
-            menu.setName(name);
-            
-            String desc = map.get("desc").toString();
-            menu.setDesc(desc);
-            
-            String price = map.get("price").toString();
-            menu.setPrice(new Double (price));
-
-            records.add(menu);
-        }
-        return records;
-    }
-
-    /**
-     *
-     * @return
-     * @throws DataAccessException
-     */
-    @Override
-    public List<Menu> retrieveDrinks() throws DataAccessException {
-            this.openLocalDBConn();
-        
-        List<Map> rawData = new ArrayList<>();
-        List<Menu> records = new ArrayList<>();
-        
-        try {
-            rawData = db.retrieveRecords(RETRIEVE_DRINKS, true);
-        } catch (SQLException sqle){
-            throw new DataAccessException (sqle.getMessage(), sqle);
-        } catch (Exception e){
-            throw new DataAccessException (e.getMessage(), e);
-        }
-        
-        Menu menu = null;
-        
-        for (Map map : rawData){
-            menu = new Menu();
-            
-            String menu_item_id = map.get("menu_item_id").toString();
-            menu.setMenuItemId(new Integer(menu_item_id));
-            
-            
-            String name = map.get("name").toString();
-            menu.setName(name);
-            
-            String desc = map.get("desc").toString();
-            menu.setDesc(desc);
-            
-            String price = map.get("price").toString();
-            menu.setPrice(new Double (price));
-
-            records.add(menu);
-        }
-        return records;
-    }
 
 
     
@@ -267,9 +123,9 @@ public class MenuDAO implements I_MenuDAO {
         
         dao.openLocalDBConn();
         
-        List<Menu> records = dao.retrieveSides();
+        List<MenuItem> records = dao.retrieveAllMenuItems();
         System.out.println("Menu Records: \n");
-        for (Menu m : records){
+        for (MenuItem m : records){
             System.out.println(m);
         }
     }

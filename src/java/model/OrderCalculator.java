@@ -19,18 +19,14 @@ public class OrderCalculator {
     private double gratuity = 0;
     private double tax = 0;
     private double finalBill = 0;
-    private List<Menu> order = new ArrayList<>();
+    private List<MenuItem> order = new ArrayList<>();
     
-    /**
-     *
-     */
-    public OrderCalculator() {}
-    
+
     /**
      *
      * @param items
      */
-    public OrderCalculator(List<Menu> items){
+    public OrderCalculator(List<MenuItem> items){
         this.order = items;
     }
     
@@ -39,28 +35,23 @@ public class OrderCalculator {
      * @return the bill
      */
     public double getBill() {
-        for (Menu menu : order){
+        for (MenuItem menu : order){
             bill += menu.getPrice();
         }
         return bill;
     }
     
 
-    /**
-     * @return the gratuity
-     */
-    public double getGratuity() {
-        gratuity = getBill() * .165;
-        //return getBill() * .165
+    public double getGratuity(){
+        gratuity = bill * 0.165;
         return gratuity;
     }
-
+    
     /**
      * @return the tax
      */
     public double getTax() {
-        tax = getBill() * .055;
-        //return getBill() * .055
+        tax = bill * 0.05;
         return tax;
     }
 
@@ -69,7 +60,7 @@ public class OrderCalculator {
      * @return finalBill
      */
     public double getFinalBill(){
-        finalBill = getBill() + getGratuity() + getTax();
+        finalBill = bill + gratuity + tax ;
         return finalBill;
     }
 }

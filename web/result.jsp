@@ -4,6 +4,7 @@
     Author     : agunn1
 --%>
 
+<%@page import="model.MenuItem"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Set"%>
@@ -37,17 +38,14 @@
               <p>You ordered:</p>
               
               <%
-                  
-                  
-                  
+
                   String bill = "";
-                  String tax = "";
                   String gratuity = "";
+                  String tax = "";
                   String finalBill = "";
                   
-                  List entrees = (List)request.getAttribute("entree");
-                  List sides = (List)request.getAttribute("side");
-                  List drinks = (List)request.getAttribute("drink");
+                  List<MenuItem> order = (List<MenuItem>)request.getAttribute("order");
+                  
                   
                   Object obj = request.getAttribute("bill");
                   Object obj2 = request.getAttribute("tax");
@@ -55,18 +53,12 @@
                   Object obj4 = request.getAttribute("finalBill");
                   
                   
-                  for (int i = 0; i < entrees.size(); i++){
-                      out.println("Entree: " + entrees.get(i) + "<br />");
+                  for (int i = 0; i < order.size(); i++){
+                      out.println("<br />");
+                      out.println(order.get(i).getType() + ":\t" + order.get(i).getName() +
+                              "\t" + order.get(i).getDesc() + "\t" + order.get(i).getPrice());
                   }
-                  
-                  for (int i = 0; i < sides.size(); i++){
-                      out.println("Side: " + sides.get(i) + "<br />");
-                  }
-                  
-                  for (int i = 0; i < drinks.size(); i++){
-                      out.println("Drink: " + drinks.get(i) + "<br />");
-                  }
-                  
+
                   
                   /////////////////////////////////////////////////
                   if (obj != null){
@@ -83,11 +75,15 @@
                   out.println("Tax:  " + tax);
                   
                   ////////////////////////////////////////////////
+
+                  
+                  ////////////////////////////////////////////////
                   if (obj3 != null){
                       gratuity = obj3.toString();
                   }
                   out.println("<br />");
                   out.println("Gratuity:  " + gratuity);
+                  
                   
                   ////////////////////////////////////////////////
                   if (obj4 != null){
@@ -99,7 +95,7 @@
                 %>
               
                 <p>
-                    <a href="index.jsp">< Back</a>
+                    <a href="home.html">< Back</a>
                 </p>
           </div><!-- End of tab1 -->
           <!------------------------>

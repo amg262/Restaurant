@@ -6,6 +6,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -19,7 +20,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.DataAccessException;
-import model.Menu;
+import model.MenuItem;
 import model.MenuService;
 import model.OrderCalculator;
 
@@ -29,7 +30,7 @@ import model.OrderCalculator;
  */
 @WebServlet(name = "OrderController", urlPatterns = {"/OrderController"})
 public class OrderController extends HttpServlet {
-
+    
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -44,60 +45,40 @@ public class OrderController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, DataAccessException {
         response.setContentType("text/html;charset=UTF-8");
-        
         PrintWriter out = response.getWriter();
         MenuService ms = new MenuService();
         
         try {
         
-        List<Menu> entrees = new ArrayList();
-        List<Menu> sides = new ArrayList();
-        List<Menu> drinks = new ArrayList();
-        List<Menu> order = new ArrayList();
-        
-        entrees = ms.getEntrees();
-        sides = ms.getSides();
-        drinks = ms.getDrinks();
+        List<MenuItem> order = new ArrayList();
+        List<MenuItem> allMenuItems = ms.getAllMenuItems();
+
 
         
         
         double tax = 0;
-        double gratuity = 0;
         double finalBill = 0;
+        double gratuity = 0;
         double bill = 0;
         
         String sTax = "";
         String sGratuity = "";
         String sFinalBill = "";
         String sBill = "";
+        
 
-            
-            for (int i=0; i < entrees.size(); i++){
-                Object object1 = request.getParameter("entree" + i);
+            for (int i=0; i < allMenuItems.size(); i++ ){
+            Object object1 = request.getParameter("menuEntry" + i);
                 if (object1 != null){
-                    order.add(entrees.get(i));
+                    order.add(allMenuItems.get(i));
                 }
-            } // end of 1st for
-            
-            for (int i=0; i < sides.size(); i++){
-                Object object2 = request.getParameter("side" + i);
-                if (object2 != null){
-                    order.add(sides.get(i));
-                }
-            } // end of 2nd for
-            
-            for (int i=0; i < drinks.size(); i++){
-                Object object3 = request.getParameter("drink" + i);
-                if (object3 != null){
-                    order.add(drinks.get(i));
-                }
-            } // end of 3rd for
-            
+            }
+
             
             OrderCalculator oc = new OrderCalculator(order);
             bill = oc.getBill();
-            tax = oc.getTax();
             gratuity = oc.getGratuity();
+            tax = oc.getTax();
             finalBill = oc.getFinalBill();
             
             sBill = "" + bill;
@@ -105,6 +86,7 @@ public class OrderController extends HttpServlet {
             sGratuity = "" + gratuity;
             sFinalBill = "" + finalBill;
             
+            request.setAttribute("order", order);
             request.setAttribute("bill", sBill);
             request.setAttribute("tax", sTax);
             request.setAttribute("gratuity", sGratuity);

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.DataAccessException;
-import model.Menu;
+import model.MenuItem;
 import model.MenuService;
 
 /**
@@ -45,16 +45,9 @@ public class MenuController extends HttpServlet {
         try {
             
             MenuService ms = new MenuService();
+            List<MenuItem> allMenuItems = ms.getAllMenuItems();
             
-            List<Menu> entreeItems = ms.getEntrees();
-            List<Menu> sideItems = ms.getSides();
-            List<Menu> drinkItems = ms.getDrinks();
-            
-            
-            request.setAttribute("entreeItems", entreeItems);
-            request.setAttribute("sideItems", sideItems);
-            request.setAttribute("drinkItems", drinkItems);
-            
+            request.setAttribute("allMenuItems", allMenuItems);
             
             RequestDispatcher view = request.getRequestDispatcher("/index.jsp");
             view.forward(request, response);
