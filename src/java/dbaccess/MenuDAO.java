@@ -1,30 +1,24 @@
-package dbaccess;
-
-
-import model.MenuItem;
-import dbaccess.I_DBAccessor;
-import dbaccess.DataAccessException;
-import dbaccess.I_MenuDAO;
-import dbaccess.DBGenericAccessor;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+package dbaccess;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import model.MenuItem;
 
 /**
  *
  * @author Andy
  */
 public class MenuDAO implements I_MenuDAO {
-
+    
     private static final String RETRIEVE_ALL_MENU_ITEMS =
-            "Select menu_item.menu_item_id, menu_item.name, menu_item.desc, menu_item.price, category.category_id, category.type"
-            + " from menu_item join category on menu_item.category_id = category.category_id  "; 
+            "Select menu_item.menu_item_id, menu_item.name, menu_item.desc, menu_item.price, category.type "
+            + " from menu_item join category on menu_item.category_id = category.category_id ; "; 
     
 
     private I_DBAccessor db;
@@ -103,36 +97,64 @@ public class MenuDAO implements I_MenuDAO {
             String price = map.get("price").toString();
             menu.setPrice(new Double (price));
             
-            String category_id = map.get("category_id").toString();
-            menu.setCategoryId(new Integer(category_id));
-            
             String type = map.get("type").toString();
             menu.setType(type);
+
             
             records.add(menu);
+
         }
         
         return records;
     }
 
+    @Override
+    public MenuItem retrieveMenuItemById(String id) throws DataAccessException {
+        this.openLocalDBConn();
+        
+        Map record;
+        
+        try {
+            record = db.retrieveRecordByID("MENU_ITEM", "MENU_ITEM_ID", new Integer(id), true);
+        } catch (SQLException sqle){
+            throw new DataAccessException(sqle.getMessage(), sqle);
+        } catch (Exception e) {
+            throw new DataAccessException(e.getMessage(), e);
+        }
+        
+        MenuItem item = new MenuItem();
+        item.setMenuItemId(new Integer(record.get(id).toString()));
+        item.setName(record.get("NAME").toString());
+        item.setDesc(record.get("DESC").toString());
+        item.setPrice(new Double(record.get("PRICE").toString()));
+        item.setCategoryId(new Integer(record.get("CATEGORY_ID").toString()));
+        
+        return item;
+    }
+
+    @Override
+    public void saveMenuItem(MenuItem item) throws DataAccessException  {
+        
+        
+    }
+
+    @Override
+    public void deleteMenuItem(MenuItem item) throws DataAccessException  {
+        this.openLocalDBConn();
+        
+        try {
+            
+            db.deleteRecords("menu_item", "menu_item_id", item.getMenuItemId(), true);
+            
+        } catch (SQLException sqle){
+            throw new DataAccessException(sqle.getMessage(), sqle);
+        } catch (Exception e) {
+            throw new DataAccessException(e.getMessage(), e);
+        }
+        
+    }
+
 
     
     
-    /**
-     *
-     * @param args
-     * @throws DataAccessException
-     */
-//    public static void main(String[] args) throws DataAccessException {
-//        I_MenuDAO dao = new MenuDAO(new DBGenericAccessor());
-//        
-//        dao.openLocalDBConn();
-//        
-//        List<MenuItem> records = dao.retrieveAllMenuItems();
-//        System.out.println("Menu Records: \n");
-//        for (MenuItem m : records){
-//            System.out.println(m);
-//        }
-//    }
 }
-

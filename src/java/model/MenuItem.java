@@ -36,6 +36,14 @@ public class MenuItem {
         this.type = type;
     }
 
+    public MenuItem(int menuItemId, int categoryId, String name, String desc, double price) {
+        this.menuItemId = menuItemId;
+        this.categoryId = categoryId;
+        this.name = name;
+        this.desc = desc;
+        this.price = price;
+    }
+
 
     /**
      *

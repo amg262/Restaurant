@@ -62,6 +62,11 @@
                   }
 
                   
+                %>
+                
+                <div id="bill" />
+                
+                <%
                   /////////////////////////////////////////////////
                   if (obj != null){
                       bill = obj.toString();
@@ -96,6 +101,7 @@
                   
                 %>
               
+          </div>
                 <p>
                     <a href="home.html">< Back</a>
                 </p>

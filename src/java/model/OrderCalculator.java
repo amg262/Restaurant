@@ -42,6 +42,10 @@ public class OrderCalculator {
     }
     
 
+    /**
+     *
+     * @return
+     */
     public double getGratuity(){
         gratuity = bill * 0.165;
         return gratuity;

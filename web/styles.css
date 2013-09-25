@@ -128,3 +128,11 @@ div.tabs{
 	border:groove;
 	border-width:thick;
 }
+
+.tab {
+        background-color:white;
+	width: auto;
+	height: 700px;
+	border:groove;
+	border-width:thick;
+}

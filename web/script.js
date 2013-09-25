@@ -17,3 +17,9 @@ $(function () {
 
 
 $(document).ready();
+
+
+function validateForm(){
+    
+    
+}

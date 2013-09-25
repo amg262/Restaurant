@@ -36,7 +36,7 @@
           </ul>
           <div id="tab1">
               
-              <form id="form1" name="form1" onsubmit="" action="OrderController" />
+              <form id="form1" name="form1" onsubmit="return validateForm()" action="OrderController" />
             <br/>
         <%
             
@@ -48,8 +48,14 @@
             for (MenuItem m : menu){
                 
                 out.println("<br />");
-                out.println("<input type='checkbox' name='menuEntry" + i + "' value='menuEntry" + i + "'>" + m.getName() +
-                        "\t"  + m.getDesc() + "\t" + n.format(m.getPrice()) + "</input>" );
+                out.println("<input type='checkbox'  name='menuEntry" + i
+                            + "' value='menuEntry" + i
+                            + "' id='menuEntry" + i + "'>"
+                            + m.getName() + "\t"
+                            + m.getDesc() + "\t"
+                            + n.format(m.getPrice())
+                            + "</input>" );
+                
                 out.println("<br />");
                 i++;
             }
