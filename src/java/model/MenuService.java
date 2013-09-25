@@ -1,6 +1,11 @@
 package model;
 
 
+import dbaccess.MenuDAO;
+import dbaccess.I_DBAccessor;
+import dbaccess.DataAccessException;
+import dbaccess.I_MenuDAO;
+import dbaccess.DBGenericAccessor;
 import java.util.List;
 
 /*
@@ -34,16 +39,16 @@ public class MenuService {
     }
     
 
-    /**
-     *
-     * @param args
-     * @throws DataAccessException
-     */
-    public static void main(String[] args) throws DataAccessException {
-        MenuService ms = new MenuService();
-        
-        System.out.println("Menu Items: \n");
-        System.out.println(ms.getAllMenuItems());
-        
-    }
+//    /**
+//     *
+//     * @param args
+//     * @throws DataAccessException
+//     */
+//    public static void main(String[] args) throws DataAccessException {
+//        MenuService ms = new MenuService();
+//        
+//        System.out.println("Menu Items: \n");
+//        System.out.println(ms.getAllMenuItems());
+//        
+//    }
 }

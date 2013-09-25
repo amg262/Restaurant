@@ -1,6 +1,11 @@
-package model;
+package dbaccess;
 
 
+import model.MenuItem;
+import dbaccess.I_DBAccessor;
+import dbaccess.DataAccessException;
+import dbaccess.I_MenuDAO;
+import dbaccess.DBGenericAccessor;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -118,16 +123,16 @@ public class MenuDAO implements I_MenuDAO {
      * @param args
      * @throws DataAccessException
      */
-    public static void main(String[] args) throws DataAccessException {
-        I_MenuDAO dao = new MenuDAO(new DBGenericAccessor());
-        
-        dao.openLocalDBConn();
-        
-        List<MenuItem> records = dao.retrieveAllMenuItems();
-        System.out.println("Menu Records: \n");
-        for (MenuItem m : records){
-            System.out.println(m);
-        }
-    }
+//    public static void main(String[] args) throws DataAccessException {
+//        I_MenuDAO dao = new MenuDAO(new DBGenericAccessor());
+//        
+//        dao.openLocalDBConn();
+//        
+//        List<MenuItem> records = dao.retrieveAllMenuItems();
+//        System.out.println("Menu Records: \n");
+//        for (MenuItem m : records){
+//            System.out.println(m);
+//        }
+//    }
 }
 

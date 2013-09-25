@@ -1,4 +1,4 @@
-package model;
+package dbaccess;
 
 /*
  * To change this template, choose Tools | Templates

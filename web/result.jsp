@@ -38,6 +38,8 @@
               <p>You ordered:</p>
               
               <%
+                  
+                  
 
                   String bill = "";
                   String gratuity = "";

@@ -1,6 +1,7 @@
-package model;
+package dbaccess;
 
 
+import model.MenuItem;
 import java.util.List;
 
 /*
