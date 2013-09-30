@@ -13,20 +13,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%
-                  
-                  MenuItem item = new MenuItem();
-                  Object obj;
-                  
-                  obj = request.getAttribute("item");
-                  MenuItem Item = (MenuItem)obj;
-                  
-                  out.println("<br />");
-                  out.println(item.getMenuItemId() + "<br />" +
-                              item.getName() + "<br />" +
-                              item.getPrice());
-                  
-                  
-              %>
+        
     </body>
 </html>

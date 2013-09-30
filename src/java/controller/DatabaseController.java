@@ -76,7 +76,7 @@ public class DatabaseController extends HttpServlet {
 
         
         
-        RequestDispatcher view = request.getRequestDispatcher("/adminResult.jsp");
+        RequestDispatcher view = request.getRequestDispatcher("/admin.jsp");
         view.forward(request, response);
         
     }
