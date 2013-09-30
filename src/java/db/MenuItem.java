@@ -12,11 +12,8 @@ package db;
 public class MenuItem {
     
     private int menuItemId;
-    private int categoryId;
     private String name;
-    private String desc;
     private double price;
-    private String type;
 
     /**
      *
@@ -27,22 +24,12 @@ public class MenuItem {
      * @param categoryId
      * @param type
      */
-    public MenuItem(int menuItemId, String name, String desc, double price, int categoryId,  String type) {
+    public MenuItem(int menuItemId, String name, double price) {
         this.menuItemId = menuItemId;
         this.name = name;
-        this.desc = desc;
         this.price = price;
-        this.categoryId = categoryId;
-        this.type = type;
     }
 
-    public MenuItem(int menuItemId, int categoryId, String name, String desc, double price) {
-        this.menuItemId = menuItemId;
-        this.categoryId = categoryId;
-        this.name = name;
-        this.desc = desc;
-        this.price = price;
-    }
 
 
     /**
@@ -50,18 +37,10 @@ public class MenuItem {
      * @param menuItemId
      * @param categoryId
      */
-    public MenuItem(int menuItemId, int categoryId) {
+    public MenuItem(int menuItemId) {
         this.menuItemId = menuItemId;
-        this.categoryId = categoryId;
     }
     
-    /**
-     *
-     * @param categoryId
-     */
-    public MenuItem(int categoryId) {
-        this.categoryId = categoryId;
-    }
     
     /**
      *
@@ -83,20 +62,6 @@ public class MenuItem {
     }
 
     /**
-     * @return the categoryId
-     */
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    /**
-     * @param categoryId the categoryId to set
-     */
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    /**
      * @return the name
      */
     public String getName() {
@@ -111,20 +76,6 @@ public class MenuItem {
     }
 
     /**
-     * @return the desc
-     */
-    public String getDesc() {
-        return desc;
-    }
-
-    /**
-     * @param desc the desc to set
-     */
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-
-    /**
      * @return the price
      */
     public double getPrice() {
@@ -136,20 +87,6 @@ public class MenuItem {
      */
     public void setPrice(double price) {
         this.price = price;
-    }
-    
-        /**
-     * @return the type
-     */
-    public String getType() {
-        return type;
-    }
-
-    /**
-     * @param type the type to set
-     */
-    public void setType(String type) {
-        this.type = type;
     }
 
     
@@ -194,9 +131,8 @@ public class MenuItem {
     @Override
     public String toString() {
         return "Menu Item \n{\n" + "menuItemId=" + menuItemId
-                + "\n categoryId=" + categoryId
-                + "\n name=" + name + "\n desc="
-                + desc + "\n price=" + price
+                + "\n name=" + name + 
+                "\n price=" + price
                 + "\n}\n";
     }
 }

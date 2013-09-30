@@ -4,9 +4,10 @@
  */
 package controller;
 
+import db.DataAccessException;
+import db.MenuItem;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -15,16 +16,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import db.DataAccessException;
-import db.MenuItem;
 import model.MenuService;
+
 
 /**
  *
- * @author Andy
+ * @author agunn1
  */
-@WebServlet(name = "MenuController", urlPatterns = {"/MenuController"})
-public class MenuController extends HttpServlet {
+@WebServlet(name = "AdminController", urlPatterns = {"/AdminController"})
+public class AdminController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -35,30 +35,18 @@ public class MenuController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
-     * @throws DataAccessException  
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, DataAccessException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        try {
-            RequestDispatcher view;
-            String query = null;
-            MenuService ms = new MenuService();
-            
-            List<MenuItem> allMenuItems = ms.getAllMenuItems();
-            request.setAttribute("allMenuItems", allMenuItems);
-
-
-            view = request.getRequestDispatcher("/index.jsp");
-            view.forward(request, response);
-            
-        } finally {            
-            out.close();
-        }
+        
+        
+        RequestDispatcher view = request.getRequestDispatcher("/admin.jsp");
+        view.forward(request, response);
+        
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP
@@ -75,7 +63,7 @@ public class MenuController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (DataAccessException ex) {
-            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -94,7 +82,7 @@ public class MenuController extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (DataAccessException ex) {
-            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

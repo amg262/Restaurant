@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="java.text.NumberFormat"%>
-<%@page import="model.MenuItem"%>
+<%@page import="db.MenuItem"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.ArrayList"%>
@@ -52,7 +52,6 @@
                             + "' value='menuEntry" + i
                             + "' id='menuEntry" + i + "'>"
                             + m.getName() + "\t"
-                            + m.getDesc() + "\t"
                             + n.format(m.getPrice())
                             + "</input>" );
                 

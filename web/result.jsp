@@ -4,7 +4,7 @@
     Author     : agunn1
 --%>
 
-<%@page import="model.MenuItem"%>
+<%@page import="db.MenuItem"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Set"%>
@@ -57,8 +57,8 @@
                   
                   for (int i = 0; i < order.size(); i++){
                       out.println("<br />");
-                      out.println(order.get(i).getType() + ":\t" + order.get(i).getName() +
-                              "\t" + order.get(i).getDesc() + "\t" + order.get(i).getPrice());
+                      out.println(order.get(i).getName() +
+                              "\t" + order.get(i).getPrice());
                   }
 
                   

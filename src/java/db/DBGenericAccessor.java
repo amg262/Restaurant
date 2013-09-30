@@ -159,7 +159,7 @@ public class DBGenericAccessor implements I_DBAccessor {
             final int fields = metaData.getColumnCount();
             
             if (resultSet.next()){
-                for (int i=0; i <= fields; i++){
+                for (int i=1; i <= fields; i++){
                     record.put(metaData.getColumnName(i), resultSet.getObject(i));
                 } //end of for
             } //end of if
@@ -184,195 +184,138 @@ public class DBGenericAccessor implements I_DBAccessor {
         return record;
     }
 
-    /**
-     *
-     * @param tableName
-     * @param colDescriptors
-     * @param colValues
-     * @param closeConnection
-     * @return boolean
-     * @throws SQLException
-     * @throws Exception
-     */
-    @Override
-    public boolean insertRecord(String tableName, List colDescriptors, List colValues, boolean closeConnection)
-            throws SQLException, Exception {
-        
-        PreparedStatement prepStmnt = null;
-        int recordsUpdated = 0;
-        
-        //finally will always close connection
-        try {
-            prepStmnt = buildInsertStatement(conn, tableName, colDescriptors);
-            
-            final Iterator i = colValues.iterator();
-            int index = 1;
-            
-            while (i.hasNext()){
-                final Object obj1 = i.next();
-                
-                if (obj1 instanceof String){
-                    prepStmnt.setString(index++, (String)obj1);
-                    
-                } else if (obj1 instanceof Integer) {
-                    prepStmnt.setInt(index++, ((Integer)obj1).intValue());
-                    
-                } else if (obj1 instanceof Long) {
-                    prepStmnt.setLong(index++, ((Long)obj1).longValue());
-                    
-                } else if (obj1 instanceof Short) {
-                    prepStmnt.setShort(index++, ((Short)obj1).shortValue());
-                    
-                } else if (obj1 instanceof java.sql.Time) {
-                    prepStmnt.setTime(index++, ((java.sql.Time)obj1));     
-                    
-                } else if (obj1 instanceof java.sql.Timestamp) {
-                    prepStmnt.setTimestamp(index++, ((java.sql.Timestamp)obj1));
-                    
-                } else if (obj1 instanceof Double) {
-                    prepStmnt.setDouble(index++, ((Double)obj1).doubleValue());
-                    
-                } else if (obj1 instanceof java.sql.Date) {
-                    prepStmnt.setDate(index++, ((java.sql.Date)obj1));
-                    
-                } else if (obj1 instanceof Boolean) {
-                    prepStmnt.setBoolean(index++, ((Boolean)obj1).booleanValue());
-                    
-                } else if (obj1 instanceof Float) {
-                    prepStmnt.setFloat(index++, ((Float)obj1).floatValue());
-                }//end of if
-                
-            } //end of while
-            
-            recordsUpdated = prepStmnt.executeUpdate();
-            
-        } catch (SQLException sqle) {
-            throw sqle;
-        } catch (Exception e) {
-            throw e;
-        } finally {
-            try {
-                prepStmnt.close();
-                if (closeConnection){
-                    conn.close();
-                } //end of it
-                
-            } catch (SQLException sqle2){
-                throw sqle2;
-            }
-        }// end of finally
-        
-        if (recordsUpdated == 1){
-            return true;
-        } else {
-            return false;
-        }
-    }// end of method
+public boolean insertRecord(String tableName, List colDescriptors, List colValues, boolean closeConnection)
+	throws SQLException, Exception
+	{
+		PreparedStatement pstmt = null;
+		int recsUpdated = 0;
 
-    
-    
-    /**
-     *
-     * @param tableName
-     * @param colDescriptors
-     * @param colValues
-     * @param whereField
-     * @param whereValue
-     * @param closeConnection
-     * @return recordsUpdated
-     * @throws SQLException
-     * @throws Exception
-     */
-    @Override
-    public int updateRecords(String tableName, List colDescriptors, List colValues, String whereField,
-            Object whereValue, boolean closeConnection) throws SQLException, Exception {
-        
-        
-        PreparedStatement prepStmnt = null;
-        int recordsUpdated = 0;
-        
-        //finally closes connection
-        try{
-            prepStmnt = buildUpdateStatement(conn, tableName, colDescriptors, whereField);
-            
-            final Iterator i = colValues.iterator();
-            int index = 1;
-            boolean doWhereValueFlag = false;
-            
-            Object obj1 = null;
-            
-            while (i.hasNext() || doWhereValueFlag) {
-                if(!doWhereValueFlag) {
-                    obj1 = i.next();
-                }
-                
-                if (obj1 instanceof String){
-                    prepStmnt.setString(index++, (String)obj1);
-                    
-                } else if (obj1 instanceof Integer) {
-                    prepStmnt.setInt(index++, ((Integer)obj1).intValue());
-                    
-                } else if (obj1 instanceof Long) {
-                    prepStmnt.setLong(index++, ((Long)obj1).longValue());
-                    
-                } else if (obj1 instanceof Short) {
-                    prepStmnt.setShort(index++, ((Short)obj1).shortValue());
-                    
-                } else if (obj1 instanceof java.sql.Time) {
-                    prepStmnt.setTime(index++, ((java.sql.Time)obj1));     
-                    
-                } else if (obj1 instanceof java.sql.Timestamp) {
-                    prepStmnt.setTimestamp(index++, ((java.sql.Timestamp)obj1));
-                    
-                } else if (obj1 instanceof Double) {
-                    prepStmnt.setDouble(index++, ((Double)obj1).doubleValue());
-                    
-                } else if (obj1 instanceof java.sql.Date) {
-                    prepStmnt.setDate(index++, ((java.sql.Date)obj1));
-                    
-                } else if (obj1 instanceof Boolean) {
-                    prepStmnt.setBoolean(index++, ((Boolean)obj1).booleanValue());
-                    
-                } else if (obj1 instanceof Float) {
-                    prepStmnt.setFloat(index++, ((Float)obj1).floatValue());
-                    
-                } else {
-                    
-                    if (obj1 != null){
-                        prepStmnt.setObject(index++, obj1);
-                    }//end of if
-                }// end of else
-                
-                if (doWhereValueFlag){
-                    break;
-                }
-                if (!i.hasNext()){
-                    doWhereValueFlag = true;
-                    obj1 = whereValue;
-                }
-            } //end of while
-            recordsUpdated = prepStmnt.executeUpdate();
-            
-        } catch (SQLException sqle) {
-            throw sqle;
-        } catch (Exception e){
-            throw e;
-        } finally {
-            try {
-                prepStmnt.close();
-                if (closeConnection){
-                    conn.close();
-                }//end of if
-                
-            } catch (SQLException sqle2){
-                throw sqle2;
-            }//end of try     
-        }//end of finally
-        
-        return recordsUpdated;
-    }
+		// do this in an excpetion handler so that we can depend on the
+		// finally clause to close the connection
+		try {
+			pstmt = buildInsertStatement(conn,tableName,colDescriptors);
 
-    
+			final Iterator i=colValues.iterator();
+			int index = 1;
+			while( i.hasNext() ) {
+				final Object obj=i.next();
+				if(obj instanceof String){
+					pstmt.setString( index++,(String)obj );
+				} else if(obj instanceof Integer ){
+					pstmt.setInt( index++,((Integer)obj).intValue() );
+				} else if(obj instanceof Long ){
+					pstmt.setLong( index++,((Long)obj).longValue() );
+				} else if(obj instanceof Double ){
+					pstmt.setDouble( index++,((Double)obj).doubleValue() );
+				} else if(obj instanceof java.sql.Date ){
+					pstmt.setDate(index++, (java.sql.Date)obj );
+				} else if(obj instanceof Boolean ){
+					pstmt.setBoolean(index++, ((Boolean)obj).booleanValue() );
+				} else {
+					if(obj != null) pstmt.setObject(index++, obj);
+				}
+			}
+			recsUpdated = pstmt.executeUpdate();
+
+		} catch (SQLException sqle) {
+			throw sqle;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			try {
+				pstmt.close();
+				if(closeConnection) conn.close();
+			} catch(SQLException e) {
+				throw e;
+			} // end try
+		} // end finally
+
+		if(recsUpdated == 1){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Updates one or more records in a table based on a single, matching field value.
+	 * 
+	 * @param tableName - a <code>String</code> representing the table name
+	 * @param colDescriptors - a <code>List</code> containing the column descriptors for
+	 * the fields that can be updated.
+	 * @param colValues - a <code>List</code> containing the values for the fields that
+	 * can be updated.
+	 * @param whereField - a <code>String</code> representing the field name for the
+	 * search criteria.
+	 * @param whereValue - an <code>Object</code> containing the value for the search criteria.
+	 * @param closeConnection - true if connection should be closed automatically; if
+	 * false, connection must be explicitly closed using the closeConnection method.
+	 * @return an <code>int</code> containing the number of records updated.
+	 * @throws SQLException if database access error or illegal sql
+	 * @throws Exception for all other problems
+	 */
+	public int updateRecords(String tableName, List colDescriptors, List colValues,
+							 String whereField, Object whereValue, boolean closeConnection)
+							 throws SQLException, Exception
+	{
+		PreparedStatement pstmt = null;
+		int recsUpdated = 0;
+
+		// do this in an excpetion handler so that we can depend on the
+		// finally clause to close the connection
+		try {
+			pstmt = buildUpdateStatement(conn,tableName,colDescriptors,whereField);
+
+			final Iterator i=colValues.iterator();
+			int index = 1;
+			boolean doWhereValueFlag = false;
+			Object obj = null;
+
+			while( i.hasNext() || doWhereValueFlag) {
+				if(!doWhereValueFlag){ obj = i.next();}
+
+				if(obj instanceof String){
+					pstmt.setString( index++,(String)obj );
+				} else if(obj instanceof Integer ){
+					pstmt.setInt( index++,((Integer)obj).intValue() );
+				} else if(obj instanceof Long ){
+					pstmt.setLong( index++,((Long)obj).longValue() );
+				} else if(obj instanceof Double ){
+					pstmt.setDouble( index++,((Double)obj).doubleValue() );
+				} else if(obj instanceof java.sql.Timestamp ){
+					pstmt.setTimestamp(index++, (java.sql.Timestamp)obj );
+				} else if(obj instanceof java.sql.Date ){
+					pstmt.setDate(index++, (java.sql.Date)obj );
+				} else if(obj instanceof Boolean ){
+					pstmt.setBoolean(index++, ((Boolean)obj).booleanValue() );
+				} else {
+					if(obj != null) pstmt.setObject(index++, obj);
+				}
+
+				if(doWhereValueFlag){ break;} // only allow loop to continue one time
+				if(!i.hasNext() ) {          // continue loop for whereValue
+					doWhereValueFlag = true;
+					obj = whereValue;
+				}
+			}
+
+			recsUpdated = pstmt.executeUpdate();
+
+		} catch (SQLException sqle) {
+			throw sqle;
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			try {
+				pstmt.close();
+				if(closeConnection) conn.close();
+			} catch(SQLException e) {
+				throw e;
+			} // end try
+		} // end finally
+
+		return recsUpdated;
+	}
     
     /**
      *
@@ -456,87 +399,80 @@ public class DBGenericAccessor implements I_DBAccessor {
         return recordsDeleted;
     }
 
-    
-    /**
-     * 
-     * @param conn2
-     * @param tableName
-     * @param colDescriptors
-     * @return
-     * @throws SQLException 
-     */
-    private PreparedStatement buildInsertStatement(Connection conn2, String tableName,
-            List colDescriptors) throws SQLException {
-        
-        StringBuilder sql = new StringBuilder("Insert Into ");
-        (sql.append(tableName)).append(" (");
-        final Iterator i = colDescriptors.iterator();
-        
-        while (i.hasNext()){
-            (sql.append((String)i.next())).append(", ");
-        }//end of while
-        
-        sql = new StringBuilder( (sql.toString()).substring(0, (sql.toString()).lastIndexOf(", ")) + ") Values (" );
-        for (int j=0; j < colDescriptors.size(); j++){
-            sql.append("?, ");
-        }//end of for
-        final String finalSqlStmnt = (sql.toString()).substring(0, (sql.toString()).lastIndexOf(", ")) + ")";
-        
-        return conn2.prepareStatement(finalSqlStmnt);
-    }
+/*
+	 * Builds a java.sql.PreparedStatement for an sql insert
+	 * @param conn - a valid connection
+	 * @param tableName - a <code>String</code> representing the table name
+	 * @param colDescriptors - a <code>List</code> containing the column descriptors for
+	 * the fields that can be inserted.
+	 * @return java.sql.PreparedStatement
+	 * @throws SQLException
+	 */
+	private PreparedStatement buildInsertStatement(Connection conn_loc, String tableName, List colDescriptors)
+	throws SQLException {
+		StringBuffer sql = new StringBuffer("INSERT INTO ");
+		(sql.append(tableName)).append(" (");
+		final Iterator i=colDescriptors.iterator();
+		while( i.hasNext() ) {
+			(sql.append( (String)i.next() )).append(", ");
+		}
+		sql = new StringBuffer( (sql.toString()).substring( 0,(sql.toString()).lastIndexOf(", ") ) + ") VALUES (" );
+		for( int j = 0; j < colDescriptors.size(); j++ ) {
+			sql.append("?, ");
+		}
+		final String finalSQL=(sql.toString()).substring(0,(sql.toString()).lastIndexOf(", ")) + ")";
+		//System.out.println(finalSQL);
+		return conn_loc.prepareStatement(finalSQL);
+	}
 
-    
-    
-    /**
-     * 
-     * @param conn2
-     * @param tableName
-     * @param colDescriptors
-     * @param whereField
-     * @return
-     * @throws SQLException 
-     */
-    private PreparedStatement buildUpdateStatement(Connection conn2, String tableName, List colDescriptors,
-            String whereField) throws SQLException {
-        
-        StringBuilder sql = new StringBuilder("Update ");
-        (sql.append(tableName)).append(" SET ");
-        final Iterator i = colDescriptors.iterator();
-        
-        while (i.hasNext()){
-            (sql.append((String)i.next())).append(" = ?, ");
-        }//end of while
-        
-        sql = new StringBuilder((sql.toString()).substring(0, (sql.toString()).lastIndexOf(", ")));
-        ((sql.append(" Where ")).append(whereField)).append(" = ?");
-        final String finalSqlStmnt = sql.toString();
-        
-        return conn2.prepareStatement(finalSqlStmnt);
-    }
+	/*
+	 * Builds a java.sql.PreparedStatement for an sql update using only one where clause test
+	 * @param conn - a JDBC <code>Connection</code> object
+	 * @param tableName - a <code>String</code> representing the table name
+	 * @param colDescriptors - a <code>List</code> containing the column descriptors for
+	 * the fields that can be updated.
+	 * @param whereField - a <code>String</code> representing the field name for the
+	 * search criteria.
+	 * @return java.sql.PreparedStatement
+	 * @throws SQLException
+	 */
+	private PreparedStatement buildUpdateStatement(Connection conn_loc, String tableName,
+												   List colDescriptors, String whereField)
+	throws SQLException {
+		StringBuffer sql = new StringBuffer("UPDATE ");
+		(sql.append(tableName)).append(" SET ");
+		final Iterator i=colDescriptors.iterator();
+		while( i.hasNext() ) {
+			(sql.append( (String)i.next() )).append(" = ?, ");
+		}
+		sql = new StringBuffer( (sql.toString()).substring( 0,(sql.toString()).lastIndexOf(", ") ) );
+		((sql.append(" WHERE ")).append(whereField)).append(" = ?");
+		final String finalSQL=sql.toString();
+		return conn_loc.prepareStatement(finalSQL);
+	}
 
-    
-    /**
-     * 
-     * @param conn2
-     * @param tableName
-     * @param whereField
-     * @return
-     * @throws SQLException 
-     */
-    private PreparedStatement buildDeleteStatement(Connection conn2, String tableName,
-            String whereField) throws SQLException {
-        
-        final StringBuilder sql = new StringBuilder("Delete From ");
-        sql.append(tableName);
-        
-        if(whereField != null){
-            sql.append(" WHERE ");
-            (sql.append(whereField)).append(" = ?");
-        }//end of if
-        
-        final String finalSqlStmnt = sql.toString();
-        
-        return conn2.prepareStatement(finalSqlStmnt);
-    }
-    
+	/*
+	 * Builds a java.sql.PreparedStatement for an sql delete using only one where clause test
+	 * @param conn - a JDBC <code>Connection</code> object
+	 * @param tableName - a <code>String</code> representing the table name
+	 * @param whereField - a <code>String</code> representing the field name for the
+	 * search criteria.
+	 * @return java.sql.PreparedStatement
+	 * @throws SQLException
+	 */
+	private PreparedStatement buildDeleteStatement(Connection conn_loc, String tableName, String whereField)
+	throws SQLException {
+		final StringBuffer sql=new StringBuffer("DELETE FROM ");
+		sql.append(tableName);
+
+		// delete all records if whereField is null
+		if(whereField != null ) {
+			sql.append(" WHERE ");
+			(sql.append( whereField )).append(" = ?");
+		}
+
+		final String finalSQL=sql.toString();
+//		System.out.println(finalSQL);
+		return conn_loc.prepareStatement(finalSQL);
+	}
 }

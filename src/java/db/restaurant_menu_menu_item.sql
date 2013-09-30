@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `menu` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `menu`;
+CREATE DATABASE  IF NOT EXISTS `restaurant_menu` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `restaurant_menu`;
 -- MySQL dump 10.13  Distrib 5.6.13, for Win32 (x86)
 --
--- Host: localhost    Database: menu
+-- Host: localhost    Database: restaurant_menu
 -- ------------------------------------------------------
 -- Server version	5.6.14
 
@@ -26,14 +26,10 @@ DROP TABLE IF EXISTS `menu_item`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `menu_item` (
   `menu_item_id` int(11) NOT NULL AUTO_INCREMENT,
-  `category_id` int(11) DEFAULT NULL,
   `name` varchar(45) DEFAULT NULL,
-  `desc` varchar(45) DEFAULT NULL,
   `price` decimal(7,2) DEFAULT NULL,
-  PRIMARY KEY (`menu_item_id`),
-  KEY `fk_category_id_idx` (`category_id`),
-  CONSTRAINT `fk_category_id` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`menu_item_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +38,7 @@ CREATE TABLE `menu_item` (
 
 LOCK TABLES `menu_item` WRITE;
 /*!40000 ALTER TABLE `menu_item` DISABLE KEYS */;
-INSERT INTO `menu_item` VALUES (1,1,'steak','1 lb sirloin',15.99),(2,1,'fish','1 lb salmon',15.99),(3,2,'fries','waffle fries',5.99),(4,2,'potato','baked',5.99),(5,3,'high life','miller 16 oz',3.99),(6,3,'soda','all types',2.99);
+INSERT INTO `menu_item` VALUES (1,'steak',10.99),(2,'chicken',10.99),(3,'corn',2.99),(4,'potato',2.99),(5,'beer',2.99),(6,'fries',2.99),(7,'soda',2.99),(8,'edited',1.99),(9,'test2',1.00);
 /*!40000 ALTER TABLE `menu_item` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-09-23 15:00:09
+-- Dump completed on 2013-09-30 16:17:07
