@@ -85,7 +85,20 @@ public class DatabaseController extends HttpServlet {
                     item.setPrice(price);
                     ms.saveMenuItem(item);
                 
-                } 
+                } else if (action.equals("getById")) {
+                    Object obj = request.getParameter("id2");
+                    String id = obj.toString();
+                    item = ms.getMenuItemById(id);
+                    
+                } else if (action.equals("delete")) {
+                    Object obj = request.getParameter("id3");
+                    String id = obj.toString();
+                    item = ms.getMenuItemById(id);
+                    ms.deleteMenuItem(item);
+                    
+                } else if (action.equals("getAll")) {
+                    menuList = ms.getAllMenuItems();
+                }
             
 
             } catch (Exception e){
@@ -94,6 +107,7 @@ public class DatabaseController extends HttpServlet {
             
             
             request.setAttribute("item", item);
+            request.setAttribute("menuList", menuList);
 
 
         

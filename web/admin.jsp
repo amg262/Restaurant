@@ -68,9 +68,8 @@
               
               
               ${item}
-              
-              
-              
+              ${menuList}
+
               
           </div><!-- End of tab1 -->
 
