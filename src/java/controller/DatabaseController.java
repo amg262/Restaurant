@@ -8,6 +8,8 @@ import db.DataAccessException;
 import db.MenuItem;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -34,6 +36,7 @@ public class DatabaseController extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+     * @throws DataAccessException  
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, DataAccessException {
@@ -41,31 +44,42 @@ public class DatabaseController extends HttpServlet {
         PrintWriter out = response.getWriter();
         
         String name = "";
+        String sId = "";
+        
         
         int id;
         double price;
         
-            
+            List<MenuItem> menuList = new ArrayList<>();
             MenuItem item = new MenuItem();
             MenuService ms = new MenuService();
             
             Object obj = request.getParameter("id");
             Object obj2 = request.getParameter("name");
             Object obj3 = request.getParameter("price");
-
-            try {
+            
+            String action = request.getParameter("action");
             
             id = Integer.valueOf(obj.toString());
+            sId = obj.toString();
+            
             name = obj2.toString();
             price = Double.valueOf(obj3.toString());
 
+            try {
+             
+                if (action.equals("update")) {
+
+                    item.setMenuItemId(id);
+                    item.setName(name);
+                    item.setPrice(price);
+                    ms.saveMenuItem(item);
+                
+                } else if (action.equals("getById")) {
+                    item = ms.getMenuItemById(sId);
+                }
             
-            item.setMenuItemId(id);
-            item.setName(name);
-            item.setPrice(price);
-            
-            ms.saveMenuItem(item);
-            
+
             } catch (Exception e){
                 
             }

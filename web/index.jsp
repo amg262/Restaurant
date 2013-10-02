@@ -14,14 +14,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="styles.css" type="text/css">
-        <script src="jQuery.js"></script>
-        <script src="script.js"></script>
+        <link rel="stylesheet" href="styles/styles.css" type="text/css">
+        <script src="scripts/jQuery.js"></script>
+        <script src="scripts/script.js"></script>
         <title>Order</title>
     </head>
     
     <center>
-    <body background="badgers.jpg">
+    <body background="styles/badgers.jpg">
     </center>
 
 
@@ -35,7 +35,7 @@
                     <li><a href="#tab1">Tab 1</a></li>
           </ul>
           <div id="tab1">
-              
+              ${email}
               <form id="form1" name="form1" onsubmit="return validateForm()" action="OrderController" />
             <br/>
         <%

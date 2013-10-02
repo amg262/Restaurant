@@ -40,27 +40,43 @@ public class MenuService {
         return menuDAO.retrieveAllMenuItems();
     }
     
+    /**
+     *
+     * @param id
+     * @return
+     * @throws DataAccessException
+     */
     public MenuItem getMenuItemById(String id) throws DataAccessException{
         return menuDAO.retrieveMenuItemById(id);
     }
     
+    /**
+     *
+     * @param item
+     * @throws DataAccessException
+     */
     public void deleteMenuItem(MenuItem item) throws DataAccessException {
         menuDAO.deleteMenuItem(item);
     }
     
+    /**
+     *
+     * @param item
+     * @throws DataAccessException
+     */
     public void saveMenuItem(MenuItem item) throws DataAccessException{
         menuDAO.saveMenuItem(item);
     }
     
 
-    /**
-     *
-     * @param args
-     * @throws DataAccessException
-     */
-    public static void main(String[] args) throws DataAccessException, SQLException, Exception {
-        MenuService ms = new MenuService();
-        MenuItem item = new MenuItem();
+//    /**
+//     *
+//     * @param args
+//     * @throws DataAccessException
+//     */
+//    public static void main(String[] args) throws DataAccessException, SQLException, Exception {
+//        MenuService ms = new MenuService();
+//        MenuItem item = new MenuItem();
 //        
 //        System.out.println("Menu Items: \n");
 //        item.setName("test4");
@@ -79,5 +95,5 @@ public class MenuService {
 //        
 //        System.out.println(item);
         
-    }
+//    }
 }

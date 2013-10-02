@@ -28,12 +28,28 @@ public interface I_MenuDAO {
     public abstract List<MenuItem> retrieveAllMenuItems() throws DataAccessException;
     
     
+    /**
+     *
+     * @param id
+     * @return
+     * @throws DataAccessException
+     */
     public MenuItem retrieveMenuItemById(String id) throws DataAccessException ;
     
     
+    /**
+     *
+     * @param item
+     * @throws DataAccessException
+     */
     public abstract void saveMenuItem(MenuItem item) throws DataAccessException ;
     
     
+    /**
+     *
+     * @param item
+     * @throws DataAccessException
+     */
     public abstract void deleteMenuItem(MenuItem item) throws DataAccessException ;
     
     

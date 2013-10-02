@@ -19,10 +19,7 @@ public class MenuItem {
      *
      * @param menuItemId
      * @param name
-     * @param desc
      * @param price
-     * @param categoryId
-     * @param type
      */
     public MenuItem(int menuItemId, String name, double price) {
         this.menuItemId = menuItemId;
@@ -35,7 +32,6 @@ public class MenuItem {
     /**
      *
      * @param menuItemId
-     * @param categoryId
      */
     public MenuItem(int menuItemId) {
         this.menuItemId = menuItemId;

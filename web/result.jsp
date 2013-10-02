@@ -13,14 +13,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="styles.css" type="text/css">
-        <script src="jQuery.js"></script>
-        <script src="script.js"></script>
+        <link rel="stylesheet" href="styles/styles.css" type="text/css">
+        <script src="script/jQuery.js"></script>
+        <script src="script/script.js"></script>
         <title>Result</title>
     </head>
     
     <center>
-    <body background="badgers.jpg">
+    <body background="styles/badgers.jpg">
     </center>
 
     <div class="container">

@@ -14,10 +14,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
@@ -184,7 +180,7 @@ public class DBGenericAccessor implements I_DBAccessor {
         return record;
     }
 
-public boolean insertRecord(String tableName, List colDescriptors, List colValues, boolean closeConnection)
+        public boolean insertRecord(String tableName, List colDescriptors, List colValues, boolean closeConnection)
 	throws SQLException, Exception
 	{
 		PreparedStatement pstmt = null;

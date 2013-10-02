@@ -102,6 +102,12 @@ public class MenuDAO implements I_MenuDAO {
         return records;
     }
 
+    /**
+     *
+     * @param id
+     * @return
+     * @throws DataAccessException
+     */
     @Override
     public MenuItem retrieveMenuItemById(String id) throws DataAccessException {
         this.openLocalDBConn();
@@ -125,6 +131,11 @@ public class MenuDAO implements I_MenuDAO {
         return item;
     }
 
+    /**
+     *
+     * @param item
+     * @throws DataAccessException
+     */
     @Override
     public void saveMenuItem(MenuItem item) throws DataAccessException  {
         this.openLocalDBConn();
@@ -132,6 +143,7 @@ public class MenuDAO implements I_MenuDAO {
         List<String> fields;
         List values;
         String tableName = "menu_item";
+        
         
         fields = new ArrayList<>();
         fields.add("name");
@@ -156,6 +168,11 @@ public class MenuDAO implements I_MenuDAO {
 
     }
 
+    /**
+     *
+     * @param item
+     * @throws DataAccessException
+     */
     @Override
     public void deleteMenuItem(MenuItem item) throws DataAccessException  {
         this.openLocalDBConn();
@@ -168,28 +185,28 @@ public class MenuDAO implements I_MenuDAO {
             throw new DataAccessException(e.getMessage(), e);
         }
     }
-
-
-    public static void main(String[] args) throws DataAccessException {
-        
-        MenuDAO dao = new MenuDAO(new DBGenericAccessor() );
-        MenuItem item = new MenuItem();
-        List<MenuItem> list = new ArrayList();
-        
-//        dao.openLocalDBConn();
-//       // item.setMenuItemId(8);
-//        item.setName("delete this");
-//        item.setPrice(1.99);
+//
+//
+//    public static void main(String[] args) throws DataAccessException {
+//        
+//        MenuDAO dao = new MenuDAO(new DBGenericAccessor() );
+//        MenuItem item = new MenuItem();
+//        List<MenuItem> list = new ArrayList();
+//        
+////        dao.openLocalDBConn();
+////       // item.setMenuItemId(8);
+////        item.setName("delete this");
+////        item.setPrice(1.99);
+////        
+////        dao.openLocalDBConn();
+////        dao.saveMenuItem(item);
 //        
 //        dao.openLocalDBConn();
-//        dao.saveMenuItem(item);
-        
-        dao.openLocalDBConn();
-        item = dao.retrieveMenuItemById("10");
-        dao.deleteMenuItem(item);
-        
-        System.out.println(item.toString());
-
-    }
+//        item = dao.retrieveMenuItemById("10");
+//        dao.deleteMenuItem(item);
+//        
+//        System.out.println(item.toString());
+//
+//    }
     
 }

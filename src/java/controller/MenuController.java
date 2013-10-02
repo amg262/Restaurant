@@ -45,11 +45,13 @@ public class MenuController extends HttpServlet {
         try {
             RequestDispatcher view;
             String query = null;
+            String email = getServletContext().getInitParameter("webmaster");
             MenuService ms = new MenuService();
             
             List<MenuItem> allMenuItems = ms.getAllMenuItems();
             request.setAttribute("allMenuItems", allMenuItems);
-
+            request.setAttribute("email", email);
+            
 
             view = request.getRequestDispatcher("/index.jsp");
             view.forward(request, response);
