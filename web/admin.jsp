@@ -12,7 +12,7 @@
     <head>
         <title>Admin</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="sytles/styles.css" type="text/css">
+        <link rel="stylesheet" href="styles/styles.css" type="text/css">
         <script src="scripts/jQuery.js"></script>
         <script src="scripts/script.js"></script>
     </head>

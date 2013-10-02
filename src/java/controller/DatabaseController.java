@@ -43,41 +43,49 @@ public class DatabaseController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-        String name = "";
-        String sId = "";
-        
-        
-        int id;
-        double price;
+//        String name = "";
+//        String sId = "";
+//        
+//        
+//        int id;
+//        double price;
         
             List<MenuItem> menuList = new ArrayList<>();
             MenuItem item = new MenuItem();
             MenuService ms = new MenuService();
             
-            Object obj = request.getParameter("id");
-            Object obj2 = request.getParameter("name");
-            Object obj3 = request.getParameter("price");
+//            Object obj = request.getParameter("id");
+//            Object obj2 = request.getParameter("name");
+//            Object obj3 = request.getParameter("price");
             
             String action = request.getParameter("action");
             
-            id = Integer.valueOf(obj.toString());
-            sId = obj.toString();
-            
-            name = obj2.toString();
-            price = Double.valueOf(obj3.toString());
+//            id = Integer.valueOf(obj.toString());
+//            sId = obj.toString();
+//            
+//            name = obj2.toString();
+//            price = Double.valueOf(obj3.toString());
 
             try {
              
                 if (action.equals("update")) {
+                    
+                    Object obj = request.getParameter("id");
+                    Object obj2 = request.getParameter("name");
+                    Object obj3 = request.getParameter("price");
+                    
+                    int id = Integer.valueOf(obj.toString());
+                    String sId = obj.toString();
+            
+                    String name = obj2.toString();
+                    double price = Double.valueOf(obj3.toString());
 
                     item.setMenuItemId(id);
                     item.setName(name);
                     item.setPrice(price);
                     ms.saveMenuItem(item);
                 
-                } else if (action.equals("getById")) {
-                    item = ms.getMenuItemById(sId);
-                }
+                } 
             
 
             } catch (Exception e){
