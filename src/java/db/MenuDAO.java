@@ -166,6 +166,7 @@ public class MenuDAO implements I_MenuDAO {
         List<String> fields;
         List values;
         String tableName = "menu_item";
+        String sItemId = String.valueOf(item.getMenuItemId());
         
         
         fields = new ArrayList<>();
@@ -178,7 +179,7 @@ public class MenuDAO implements I_MenuDAO {
         
         try {
             
-            if (item.getMenuItemId() == 0){
+            if (item.getMenuItemId() == 0 || sItemId == null || sItemId.length() == 0){
                 db.insertRecord(tableName, fields, values, true);
                 
             } else {
