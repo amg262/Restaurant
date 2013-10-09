@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import db.DataAccessException;
 import db.MenuItem;
+import javax.servlet.http.HttpSession;
 import model.MenuService;
 
 /**
@@ -41,12 +42,17 @@ public class MenuController extends HttpServlet {
             throws ServletException, IOException, DataAccessException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        String driver = getServletContext().getInitParameter("driver");
+        String path = getServletContext().getInitParameter("path");
+        String username = getServletContext().getInitParameter("username");
+        String password = getServletContext().getInitParameter("password");
+
 
         try {
             RequestDispatcher view;
             String query = null;
             String email = getServletContext().getInitParameter("webmaster");
-            MenuService ms = new MenuService();
+            MenuService ms = new MenuService(driver, path, username, password);
             
             List<MenuItem> allMenuItems = ms.getAllMenuItems();
             request.setAttribute("allMenuItems", allMenuItems);
@@ -55,6 +61,7 @@ public class MenuController extends HttpServlet {
 
             view = request.getRequestDispatcher("/index.jsp");
             view.forward(request, response);
+
             
         } finally {            
             out.close();

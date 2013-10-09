@@ -30,11 +30,11 @@
             <li><a href="#tab1">Tab 1</a></li>
           </ul>
           <div id="tab1">
-              
+              ${email}
               <form method="POST" action="DatabaseController?action=update" />
               <h3>Add/Edit Item</h3>
                <p>
-              Item ID: <input type="text" name="id" /></br>
+                   Item ID: <input type="text" name="id" size="2" /></br>
               Name: <input type="text" name="name" /></br>
               Price: <input type="text" name="price" /></br>
               <input type="submit" value="Submit"/>
@@ -44,7 +44,7 @@
               <form method="POST" action="DatabaseController?action=getById" />
               <h3>Get Item by ID</h3>
                <p>
-              Item ID: <input type="text" name="id2" /></br>
+              Item ID: <input type="text" name="id2" size="2" /></br>
               <input type="submit" value="Submit"/>
               </p>
           </form>
@@ -53,7 +53,7 @@
               <form method="POST" action="DatabaseController?action=delete" />
               <h3>Delete Item</h3>
                <p>
-              Item ID: <input type="text" name="id3" /></br>
+              Item ID: <input type="text" name="id3" size="2" /></br>
               <input type="submit" value="Submit"/>
               </p>
           </form>
@@ -69,8 +69,6 @@
               
               ${item}
               ${menuList}
-
-              
           </div><!-- End of tab1 -->
 
           <!------------------------>

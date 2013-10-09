@@ -62,7 +62,9 @@
         %>
 
               <br/>
+              ${orderList}
               <br/>
+              <br />
               <input type="submit" name="submit" id="submit" value="Place Order"/>
               </form>
             

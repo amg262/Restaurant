@@ -43,28 +43,20 @@ public class DatabaseController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         
-//        String name = "";
-//        String sId = "";
-//        
-//        
-//        int id;
-//        double price;
-        
-            List<MenuItem> menuList = new ArrayList<>();
-            MenuItem item = new MenuItem();
-            MenuService ms = new MenuService();
+        String email = getServletContext().getInitParameter("webmaster");
+        String driver = getServletContext().getInitParameter("driver");
+        String path = getServletContext().getInitParameter("path");
+        String username = getServletContext().getInitParameter("username");
+        String password = getServletContext().getInitParameter("password");
+
+
+        List<MenuItem> menuList = new ArrayList<>();
+        MenuItem item = new MenuItem();
+        MenuService ms = new MenuService(driver, path, username, password);
+        //MenuService ms = new MenuService();
+
+        String action = request.getParameter("action");
             
-//            Object obj = request.getParameter("id");
-//            Object obj2 = request.getParameter("name");
-//            Object obj3 = request.getParameter("price");
-            
-            String action = request.getParameter("action");
-            
-//            id = Integer.valueOf(obj.toString());
-//            sId = obj.toString();
-//            
-//            name = obj2.toString();
-//            price = Double.valueOf(obj3.toString());
 
             try {
              

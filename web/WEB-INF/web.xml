@@ -10,6 +10,33 @@
         <param-name>webmaster</param-name>
         <param-value>amgunn1@hotmail.com</param-value>
     </context-param>
+    
+    <context-param>
+        <param-name>webmaster</param-name>
+        <param-value>amgunn1@hotmail.com</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>driver</param-name>
+        <param-value>com.mysql.jdbc.Driver</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>path</param-name>
+        <param-value>jdbc:mysql://localhost:3306/restaurant_menu</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>username</param-name>
+        <param-value>root</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>password</param-name>
+        <param-value>admin</param-value>
+    </context-param>
+    
+    
 
     <session-config>
         <session-timeout>

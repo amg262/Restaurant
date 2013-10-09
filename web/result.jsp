@@ -35,6 +35,7 @@
           
           
           <div id="tab1">
+              ${email}
               <p>You ordered:</p>
               
               <%
@@ -103,6 +104,12 @@
               
           </div>
                 <p>
+                    
+                <p>
+                    
+                    ${orderList}
+                </p>
+                    
                     <a href="home.html">< Back</a>
                 </p>
           </div><!-- End of tab1 -->
@@ -110,6 +117,6 @@
         </div><!-- End of tabs -->
             </div><!-- End of content -->
     </div><!-- End of container -->
-
+    
       </body>
     </html>

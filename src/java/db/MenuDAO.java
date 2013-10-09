@@ -21,6 +21,10 @@ public class MenuDAO implements I_MenuDAO {
     
 
     private I_DBAccessor db;
+    private String driver;
+    private String path;
+    private String username;
+    private String password;
             
     
     /**
@@ -35,6 +39,23 @@ public class MenuDAO implements I_MenuDAO {
     public MenuDAO(I_DBAccessor db){
         this.db = db;
     }
+    
+    /**
+     *
+     * @param db
+     * @param driver
+     * @param path
+     * @param username
+     * @param password
+     */
+    public MenuDAO(I_DBAccessor db, String driver, String path,
+            String username, String password){
+        this.db = db;
+        this.driver = driver;
+        this.path = path;
+        this.username = username;
+        this.password = password;
+    }
             
     /**
      *
@@ -44,9 +65,11 @@ public class MenuDAO implements I_MenuDAO {
     public void openLocalDBConn() throws DataAccessException {
         try {
             db.openConnection(
-                    "com.mysql.jdbc.Driver",
-                    "jdbc:mysql://localhost:3306/restaurant_menu",
-                    "root", "root"); 
+                    driver, path, username, password);
+                    
+//                    "com.mysql.jdbc.Driver",
+//                    "jdbc:mysql://localhost:3306/restaurant_menu",
+//                    "root", "admin");
         } catch (IllegalArgumentException iae){
             throw new DataAccessException (iae.getMessage(), iae);
         } catch (ClassNotFoundException cnfe){
@@ -154,6 +177,7 @@ public class MenuDAO implements I_MenuDAO {
         values.add(item.getPrice());
         
         try {
+            
             if (item.getMenuItemId() == 0){
                 db.insertRecord(tableName, fields, values, true);
                 

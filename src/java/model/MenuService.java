@@ -22,13 +22,34 @@ import java.util.List;
 public class MenuService {
     
     private I_MenuDAO menuDAO;
+    private String driver;
+    private String path;
+    private String username;
+    private String password;
+    I_DBAccessor db = new DBGenericAccessor();
 
     /**
      *
      */
     public MenuService() {
-        I_DBAccessor db = new DBGenericAccessor();
         menuDAO = new MenuDAO(db);
+    }
+
+    /**
+     *
+     * @param driver
+     * @param path
+     * @param username
+     * @param password
+     */
+    public MenuService(String driver, String path, String username, String password) {
+        this.driver = driver;
+        this.path = path;
+        this.username = username;
+        this.password = password;
+        
+        I_DBAccessor db = new DBGenericAccessor();
+        menuDAO = new MenuDAO(db, driver, path, username, password);
     }
     
     /**

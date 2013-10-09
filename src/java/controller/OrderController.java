@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import db.DataAccessException;
 import db.MenuItem;
+import javax.servlet.http.HttpSession;
 import model.MenuService;
 import model.OrderCalculator;
 
@@ -46,15 +47,21 @@ public class OrderController extends HttpServlet {
             throws ServletException, IOException, DataAccessException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        MenuService ms = new MenuService();
+        String driver = getServletContext().getInitParameter("driver");
+        String path = getServletContext().getInitParameter("path");
+        String username = getServletContext().getInitParameter("username");
+        String password = getServletContext().getInitParameter("password");
+        
+        MenuService ms = new MenuService(driver, path, username, password);
+        String email = getServletContext().getInitParameter("webmaster");
+        
         
         try {
         
         List<MenuItem> order = new ArrayList();
         List<MenuItem> allMenuItems = ms.getAllMenuItems();
+        HttpSession session = request.getSession();
 
-
-        
         
         double tax = 0;
         double finalBill = 0;
@@ -91,7 +98,11 @@ public class OrderController extends HttpServlet {
             request.setAttribute("tax", sTax);
             request.setAttribute("gratuity", sGratuity);
             request.setAttribute("finalBill", sFinalBill);
-
+            
+           
+            
+            session.setAttribute("orderList", order);
+            
         } catch (Exception e){
             
         }
